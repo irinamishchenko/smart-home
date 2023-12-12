@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../styles/index.css" />
+    <title>Smart Home | Rooms</title>
+  </head>
+  <body>
+    <header class="header"></header>
+    <main class="main">
+      <section class="main__header">
+        <h2 class="main--title">Add your first room!</h2>
+        <button class="main__btn-add-room">
+          <svg class="main__btn-add-room--icon">
+            <use xlink:href="../images/sprite.svg#plus"></use>
+          </svg>
+          Add room
+        </button>
+        <div class="add-room-modal-wrapper">
+          <div class="add-room-modal modal">
+            <h2 class="modal--title">Set name for new room</h2>
+            <input
+              class="modal--input"
+              type="text"
+              name="roomName"
+              id="roomName"
+            />
+            <div class="modal__buttons">
+              <button class="modal__buttons-cancel">Cancel</button>
+              <button class="modal__buttons-add">Add room</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <ul class="main__rooms"></ul>
+    </main>
+    <footer class="footer">
+      <nav>
+        <ul class="footer__nav">
+          <li class="footer__nav--item">
+            <a class="footer__nav--item-link" href="/">
+              <svg class="footer__nav--item-icon">
+                <use xlink:href="../images/sprite.svg#home"></use>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li class="footer__nav--item">
+            <a class="footer__nav--item-link" href="pages/rooms.html">
+              <svg class="footer__nav--item-icon">
+                <use xlink:href="../images/sprite.svg#rooms"></use>
+              </svg>
+              Rooms
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <script type="module" src="./../script/rooms.js"></script>
+  </body>
+</html>

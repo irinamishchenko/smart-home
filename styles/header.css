@@ -1,0 +1,7 @@
+.header {
+  height: 291px;
+  background: #1f75ff url(./../images/background-header.png) no-repeat 80% 80%;
+  background-size: 20%;
+  border-radius: 0 0 5% 5%;
+  margin-bottom: 30px;
+}
