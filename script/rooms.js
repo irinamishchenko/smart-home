@@ -1,18 +1,22 @@
 let rooms = [];
 
-const makeRoomBtn = document.querySelector(".main__btn-add-room");
-const title = document.querySelector(".main--title");
-const addRoomModalWrapper = document.querySelector(".add-room-modal-wrapper");
-const addRoomInput = document.querySelector(".modal--input");
-const addRoomBtnCancel = document.querySelector(".modal__buttons-cancel");
-const addRoomBtnAdd = document.querySelector(".modal__buttons-add");
-const roomsList = document.querySelector(".main__rooms");
+const makeRoomBtn = document.querySelector(".rooms__btn-add-room");
+const title = document.querySelector(".rooms--title");
+const addRoomModalWrapper = document.querySelector(
+  ".rooms__add-room-modal-wrapper"
+);
+const addRoomInput = document.querySelector(".rooms__modal--input");
+const addRoomBtnCancel = document.querySelector(
+  ".rooms__modal__buttons-cancel"
+);
+const addRoomBtnAdd = document.querySelector(".rooms__modal__buttons-add");
+const roomsList = document.querySelector(".rooms__list");
 
 makeRoomBtn.addEventListener("click", openAddRoomModal);
 addRoomBtnCancel.addEventListener("click", closeAddRoomModal);
 addRoomBtnAdd.addEventListener("click", setRoom);
 
-if (JSON.parse(localStorage.rooms).length > 0) {
+if (localStorage.rooms && localStorage.rooms.length > 0) {
   changeTitle();
   rooms = JSON.parse(localStorage.rooms);
   addRoom();
@@ -67,52 +71,52 @@ function changeTitle() {
 function setImage(value) {
   switch (value.toLowerCase()) {
     case "kitchen":
-      return "../images/kitchen.jpg";
+      return "../images/rooms/kitchen.jpg";
       break;
     case "bathroom":
-      return "../images/bathroom.jpg";
+      return "../images/rooms/bathroom.jpg";
       break;
     case "living room":
-      return "../images/living-room.jpg";
+      return "../images/rooms/living-room.jpg";
       break;
     case "bedroom":
-      return "../images/bedroom.jpg";
+      return "../images/rooms/bedroom.jpg";
       break;
     case "children's room":
-      return "../images/children-room.jpg";
+      return "../images/rooms/children-room.jpg";
       break;
     case "office":
-      return "../images/office.jpg";
+      return "../images/rooms/office.jpg";
       break;
     default:
-      return "../images/other-room.jpg";
+      return "../images/rooms/other-room.jpg";
       break;
   }
 }
 
 function addRoom() {
-  const roomsListItems = [];
+  let roomsListItems = ``;
   for (let i = 0; i < rooms.length; i++) {
     let devicesCount = rooms[i].devices.length;
-    let item = `<li class="rooms-item"><div class="rooms-item__header"><h2 class="rooms-item__header-title">${
+    let item = `<li class="rooms__list-item"><div class="rooms__list-item__header"><h2 class="rooms__list-item__header-title">${
       rooms[i].title
-    }</h2><p class="rooms-item__header-text">${devicesCount} ${
+    }</h2><p class="rooms__list-item__header-text">${devicesCount} ${
       devicesCount === 1 ? "device" : "devices"
-    }</p></div><img class="rooms-item--image" src="${rooms[i].image}" alt="${
+    }</p></div><img class="rooms__list-item--image" src="${
+      rooms[i].image
+    }" alt="${rooms[i].title}" /><a href="../pages/devices.html" data-room="${
       rooms[i].title
-    }" /><a href="../pages/devices.html" data-room="${
-      rooms[i].title
-    }" class="rooms-item__button"><div class="rooms-item__button--icon-wrapper"><svg class="rooms-item__button--icon">
+    }" class="rooms__list-item__button"><div class="rooms__list-item__button--icon-wrapper"><svg class="rooms__list-item__button--icon">
     <use xlink:href="../images/sprite.svg#plus"></use>
   </svg></div>Add device</a></li>`;
-    roomsListItems.push(item);
+    roomsListItems += item;
   }
   roomsList.innerHTML = roomsListItems;
   document
-    .querySelectorAll(".rooms-item__button")
-    .forEach((el) => el.addEventListener("click", test));
+    .querySelectorAll(".rooms__list-item__button")
+    .forEach((el) => el.addEventListener("click", setRoomName));
 }
 
-function test() {
-  console.log(this.dataset.room);
+function setRoomName() {
+  localStorage.setItem("selectedRoom", this.dataset.room);
 }

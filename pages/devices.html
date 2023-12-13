@@ -3,7 +3,249 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./../styles/index.css" />
+    <title>Smart Home | Devices</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header"></header>
+    <main class="devices__main devices">
+      <section class="devices__header">
+        <h2 class="devices__header--title">Add your first device!</h2>
+        <ul class="devices__header__list"></ul>
+      </section>
+      <button class="devices__add-button">
+        <svg class="devices__add-button-icon">
+          <use xlink:href="../images/sprite.svg#plus"></use>
+        </svg>
+        Add device
+      </button>
+      <div class="devices__modal-wrapper">
+        <div class="devices__modal">
+          <h2 class="devices__modal-title">Choose your device</h2>
+          <ul class="devices__modal__list">
+            <li class="devices__modal__list-item devices__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/air-condition.png"
+                  alt="air condition"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Air Condition</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/heater-machine.png"
+                  alt="heater machine"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Heater Machine</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/griller.png"
+                  alt="griller"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Griller</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/loud.png"
+                  alt="loud"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Loud</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/coffee-machine.png"
+                  alt="coffee machine"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Coffee Machine</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/water-boiler.png"
+                  alt="water boiler"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Water Boiler</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/tv.png"
+                  alt="tv"
+                />
+              </div>
+              <h3 class="devices__list-item__title">TV</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/microwave-oven.png"
+                  alt="microwave oven"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Microwave Oven</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/air-purifier.png"
+                  alt="air purifier"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Air Purifier</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/light.png"
+                  alt="light"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Light</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/cleaner-robot.png"
+                  alt="cleaner robot"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Cleaner Robot</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices//rice-cooker.png"
+                  alt="rice cooker"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Rice Cooker</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/stove.png"
+                  alt="stove"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Stove</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/fan.png"
+                  alt="fan"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Fan</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/fridge.png"
+                  alt="fridge"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Fridge</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/smart-door.png"
+                  alt="smart door"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Smart Door</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+            <li class="devices__modal__list-item">
+              <div class="devices__list-item__image-wrapper">
+                <img
+                  class="devices__list-item__image"
+                  src="./../images/devices/washing-machine.png"
+                  alt="washing machine"
+                />
+              </div>
+              <h3 class="devices__list-item__title">Washing Machine</h3>
+              <button class="devices__list-item__button">Add</button>
+            </li>
+          </ul>
+          <button class="devices__modal__btn-cancel">Cancel</button>
+        </div>
+      </div>
+      <section></section>
+    </main>
+    <footer class="footer">
+      <nav>
+        <ul class="footer__nav">
+          <li class="footer__nav--item">
+            <a class="footer__nav--item-link" href="/">
+              <svg class="footer__nav--item-icon">
+                <use xlink:href="../images/sprite.svg#home"></use>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li class="footer__nav--item">
+            <a class="footer__nav--item-link" href="rooms.html">
+              <svg class="footer__nav--item-icon">
+                <use xlink:href="../images/sprite.svg#rooms"></use>
+              </svg>
+              Rooms
+            </a>
+          </li>
+          <li class="footer__nav--item">
+            <a class="footer__nav--item-link" href="devices.html">
+              <svg class="footer__nav--item-icon">
+                <use xlink:href="../images/sprite.svg#devices"></use>
+              </svg>
+              Devices
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <script src="../script/devices.js"></script>
+  </body>
 </html>

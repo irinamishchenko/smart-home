@@ -1,8 +1,5 @@
 // const rooms = [];
 
-import { rooms } from "./../data/rooms.js";
-console.log(rooms);
-
 // const makeRoomBtn = document.querySelector(".main__btn-add-room");
 // const title = document.querySelector(".main--title");
 // const modalWrapper = document.querySelector(".add-room-modal-wrapper");

@@ -4,11 +4,11 @@ main {
   padding: 0 15px;
 }
 
-.main__header {
+.rooms__header {
   margin-bottom: 30px;
 }
 
-.main--title {
+.rooms--title {
   display: inline-block;
   font-family: "Open Sans";
   font-size: 24px;
@@ -19,7 +19,7 @@ main {
   margin-bottom: 20px;
 }
 
-.main__btn-add-room {
+.rooms__btn-add-room {
   width: 150px;
   height: 50px;
   border: none;
@@ -34,13 +34,13 @@ main {
   cursor: pointer;
 }
 
-.main__btn-add-room--icon {
+.rooms__btn-add-room--icon {
   stroke: #242127;
   width: 24px;
   height: 24px;
 }
 
-.add-room-modal-wrapper {
+.rooms__add-room-modal-wrapper {
   display: none;
   width: 100%;
   height: 100%;
@@ -51,7 +51,7 @@ main {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.add-room-modal {
+.rooms__add-room-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,9 +68,10 @@ main {
   bottom: 0;
   right: 0;
   margin: auto;
+  z-index: 12;
 }
 
-.modal--title {
+.rooms__modal--title {
   font-family: "Open Sans";
   font-size: 18px;
   font-style: normal;
@@ -79,7 +80,7 @@ main {
   color: #424242;
 }
 
-.modal--input {
+.rooms__modal--input {
   width: 80%;
   border: none;
   border-bottom: 1px solid #e0e3e7;
@@ -87,14 +88,14 @@ main {
   padding: 5px;
 }
 
-.modal__buttons {
+.rooms__modal__buttons {
   width: 80%;
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
 
-.modal__buttons button {
+.rooms__modal__buttons button {
   width: 112px;
   height: 40px;
   border-radius: 8px;
@@ -107,13 +108,13 @@ main {
   line-height: 20px;
 }
 
-.modal__buttons button:hover {
+.rooms__modal__buttons button:hover {
   background-color: #254bec;
   border: none;
   color: #fff;
 }
 
-.main__rooms {
+.rooms__list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -122,13 +123,13 @@ main {
   margin-bottom: 100px;
 }
 
-.rooms-item {
+.rooms__list-item {
   width: 100%;
   height: 250px;
   position: relative;
 }
 
-.rooms-item__header {
+.rooms__list-item__header {
   position: absolute;
   margin: auto;
   top: 20px;
@@ -141,7 +142,7 @@ main {
   color: #fff;
 }
 
-.rooms-item__header-title {
+.rooms__list-item__header-title {
   font-size: 35px;
 
   font-weight: 700;
@@ -149,25 +150,25 @@ main {
   margin-bottom: 10px;
 }
 
-.rooms-item__header-text {
+.rooms__list-item__header-text {
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
 }
 
-.rooms-item--image {
+.rooms__list-item--image {
   width: 100%;
   height: 100%;
   border-radius: 1px 40px 1px 40px;
   filter: opacity(50%);
 }
 
-.rooms-item__button {
+.rooms__list-item__button {
   text-decoration: none;
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 10;
+  z-index: 8;
   width: 110px;
   height: 90px;
   border-radius: 80px 0px 0px 0px;
@@ -186,7 +187,7 @@ main {
   color: #fff;
 }
 
-.rooms-item__button--icon-wrapper {
+.rooms__list-item__button--icon-wrapper {
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -195,7 +196,7 @@ main {
   background-color: #78b9eb;
 }
 
-.rooms-item__button--icon {
+.rooms__list-item__button--icon {
   width: 24px;
   height: 24px;
   stroke: #fff;

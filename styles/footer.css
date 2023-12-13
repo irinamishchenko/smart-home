@@ -31,6 +31,11 @@
   gap: 7px;
   text-decoration: none;
   color: #fff;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .footer__nav--item-icon {
