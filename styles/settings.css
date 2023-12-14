@@ -1,0 +1,10 @@
+.settings__title {
+  display: inline-block;
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
