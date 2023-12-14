@@ -19,7 +19,7 @@ addRoomBtnAdd.addEventListener("click", setRoom);
 if (localStorage.rooms && localStorage.rooms.length > 0) {
   changeTitle();
   rooms = JSON.parse(localStorage.rooms);
-  addRoom();
+  showRooms();
 }
 
 function openAddRoomModal() {
@@ -46,7 +46,7 @@ function setRoom() {
     rooms.push(room);
     localStorage.setItem("rooms", JSON.stringify(rooms));
     closeAddRoomModal();
-    addRoom();
+    showRooms();
   } catch (error) {
     alert(error.message);
   } finally {
@@ -94,7 +94,7 @@ function setImage(value) {
   }
 }
 
-function addRoom() {
+function showRooms() {
   let roomsListItems = ``;
   for (let i = 0; i < rooms.length; i++) {
     let devicesCount = rooms[i].devices.length;
