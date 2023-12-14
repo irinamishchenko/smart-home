@@ -1,5 +1,6 @@
 let rooms = [];
 
+const title = document.querySelector(".devices__header--title");
 const roomsList = document.querySelector(".devices__header__list");
 // let roomsListItems = [];
 const addDeviceBtn = document.querySelector(".devices__add-button");
@@ -66,9 +67,23 @@ function closeAddDeviceModal() {
 }
 
 class Device {
+  isOn = false;
+  battery = Math.floor(Math.random() * 100) + 1;
+  functions = [];
   constructor(title, imageUrl) {
     this.title = title;
     this.imageUrl = imageUrl;
+    // this.changeBattery();
+  }
+  changeBattery() {
+    // console.log("work");
+    // setInterval(() => {
+    //   this.battery -= 1;
+    //   console.log(this.battery);
+    // }, 1000);
+  }
+  set functions(functionsArray) {
+    this.functions = functionsArray;
   }
 }
 
@@ -81,6 +96,8 @@ function addDevice(event) {
     checkDeviceTitle(chosenDevise);
     const imageUrl = setImageUrl(chosenDevise);
     const device = new Device(chosenDevise, imageUrl);
+    // setDeviceFunctions(device);
+    // console.log(device.changeBattery());
     rooms
       .find((room) => room.title === localStorage.selectedRoom)
       .devices.push(device);
@@ -92,11 +109,27 @@ function addDevice(event) {
   }
 }
 
+// function setDeviceFunctions(device) {
+//   const functions = [];
+//   console.log(device.title);
+//   switch (device.title) {
+//     case "air-condition":
+//         functions.push("")
+//         break;
+
+//     default:
+//         break;
+//   }
+// }
+
 function showDevices() {
   let devicesListItems = ``;
   const devicesForRoom = rooms.find(
     (room) => room.title === localStorage.selectedRoom
   ).devices;
+  if (devicesForRoom.length > 0) {
+    changeTitle();
+  }
   for (let i = 0; i < devicesForRoom.length; i++) {
     const title = setTitle(devicesForRoom[i].title);
     const newDevice = `<li class="devices__list-item"><div class="devices__list-item__image-wrapper"><img class="devices__list-item__image" src="${devicesForRoom[i].imageUrl}" alt="${title}" /></div><h2 class="devices__list-item__title">${title}</h2><div data-device="${title}" class="devices__list-item__buttons"><a href="../pages/settings.html" class="devices__list-item__button-details">Details</a><button class="devices__list-item__button-delete">Delete</button></div></li>`;
@@ -104,8 +137,15 @@ function showDevices() {
   }
   devicesList.innerHTML = devicesListItems;
   document
+    .querySelectorAll(".devices__list-item__button-details")
+    .forEach((button) => button.addEventListener("click", setDeviceName));
+  document
     .querySelectorAll(".devices__list-item__button-delete")
     .forEach((button) => button.addEventListener("click", deleteDevice));
+}
+
+function changeTitle() {
+  title.textContent = "Your Devices";
 }
 
 function setImageUrl(title) {
@@ -129,6 +169,15 @@ function checkDeviceTitle(title) {
   }
 }
 
+function setDeviceName(event) {
+  // console.log(event.target.parentNode.dataset.device);
+  const chosenDevice = event.target.parentNode.dataset.device
+    .split(" ")
+    .map((word) => word.toLowerCase())
+    .join("-");
+  localStorage.setItem("selectedDevice", chosenDevice);
+}
+
 function deleteDevice(event) {
   const chosenDevice = event.target.parentNode.dataset.device
     .split(" ")
@@ -140,6 +189,7 @@ function deleteDevice(event) {
   const filteredDevices = roomDevices.filter(
     (device) => device.title !== chosenDevice
   );
+
   rooms.find((room) => room.title === localStorage.selectedRoom).devices =
     filteredDevices;
   localStorage.setItem("rooms", JSON.stringify(rooms));
