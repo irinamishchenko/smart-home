@@ -115,7 +115,7 @@
 .devices__list-item {
   padding: 15px 10px;
   background-color: #fff;
-  height: 196px;
+  height: 200px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -188,7 +188,8 @@
 .devices__list-item__buttons {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .devices__list-item__buttons button,

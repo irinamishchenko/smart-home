@@ -10,7 +10,6 @@ const chooseDeviceButtons = document.querySelectorAll(
   ".devices__list-item__button"
 );
 const devicesList = document.querySelector("#devices-list");
-
 addDeviceBtn.addEventListener("click", openAddDeviceModal);
 cancelDeviceBtn.addEventListener("click", closeAddDeviceModal);
 
@@ -23,7 +22,7 @@ if (JSON.parse(localStorage.rooms).length > 0) {
 function showRooms() {
   let roomsListItems = ``;
   for (let i = 0; i < rooms.length; i++) {
-    item = `<li class="devices__header__list-item" data-room="${rooms[i].title}">${rooms[i].title}</li>`;
+    let item = `<li class="devices__header__list-item" data-room="${rooms[i].title}">${rooms[i].title}</li>`;
     roomsListItems += item;
   }
   roomsList.innerHTML = roomsListItems;
@@ -66,26 +65,33 @@ function closeAddDeviceModal() {
   addDeviceModalWrapper.style.display = "none";
 }
 
-class Device {
-  isOn = false;
-  battery = Math.floor(Math.random() * 100) + 1;
-  functions = [];
-  constructor(title, imageUrl) {
-    this.title = title;
-    this.imageUrl = imageUrl;
-    // this.changeBattery();
-  }
-  changeBattery() {
-    // console.log("work");
-    // setInterval(() => {
-    //   this.battery -= 1;
-    //   console.log(this.battery);
-    // }, 1000);
-  }
-  set functions(functionsArray) {
-    this.functions = functionsArray;
-  }
-}
+// class Device {
+//   isOn = false;
+//   battery = Math.floor(Math.random() * 100) + 1;
+//   //   functions = [];
+//   constructor(title, imageUrl) {
+//     this.title = title;
+//     this.imageUrl = imageUrl;
+//     // this.changeBattery();
+//   }
+//   showTitle() {
+//     return this.title + "!";
+//   }
+//   changeBattery() {
+//     console.log("works");
+//     // let batteryInterval = setInterval(() => {
+//     //   //   if (this.battery === 1) {
+//     //   //     clearInterval(batteryInterval);
+//     //   //   }
+//     //   //   this.battery -= 1;
+//     //   //   console.log(this.battery);
+//     // }, 1000);
+//     // batteryInterval();
+//   }
+//   set functions(functionsArray) {
+//     this.functions = functionsArray;
+//   }
+// }
 
 function addDevice(event) {
   let chosenDevise = event.target.parentNode.children[1].innerText
@@ -95,7 +101,10 @@ function addDevice(event) {
   try {
     checkDeviceTitle(chosenDevise);
     const imageUrl = setImageUrl(chosenDevise);
-    const device = new Device(chosenDevise, imageUrl);
+    const device = createDevice(chosenDevise, imageUrl);
+    // const device = new Device(chosenDevise, imageUrl);
+    console.log(device);
+    // console.log(device.showTitle());
     // setDeviceFunctions(device);
     // console.log(device.changeBattery());
     rooms
@@ -107,6 +116,10 @@ function addDevice(event) {
   } catch (error) {
     alert(error.message);
   }
+}
+
+function createDevice(title, imageUrl) {
+  return { isOn: false, title, imageUrl };
 }
 
 // function setDeviceFunctions(device) {
@@ -170,7 +183,6 @@ function checkDeviceTitle(title) {
 }
 
 function setDeviceName(event) {
-  // console.log(event.target.parentNode.dataset.device);
   const chosenDevice = event.target.parentNode.dataset.device
     .split(" ")
     .map((word) => word.toLowerCase())
@@ -195,3 +207,7 @@ function deleteDevice(event) {
   localStorage.setItem("rooms", JSON.stringify(rooms));
   showDevices();
 }
+
+// export default function changeBattery(device) {
+//   console.log(device.showTitle());
+// }
