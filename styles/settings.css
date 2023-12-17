@@ -1,5 +1,6 @@
 .settings__header {
   /* display: flex; */
+  margin-bottom: 20px;
 }
 
 .settings__header__devices-list {
@@ -63,4 +64,215 @@
   color: #fff;
   font-family: "Open Sans";
   font-size: 16px;
+}
+
+.settings {
+}
+
+.lamp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.lamp__img-container {
+  width: 100px;
+}
+
+.lamp-img {
+  width: 100%;
+}
+
+.lamp-icon {
+  height: 100px;
+  width: 100px;
+  opacity: 0.5;
+}
+
+.lamp__settings {
+  max-width: 120px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lamp__settings__colors {
+}
+
+.lamp__settings__colors-title,
+.lamp__settings__brightness-title {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ababab;
+  margin-bottom: 15px;
+}
+
+.lamp__settings__colors__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lamp__settings__colors__button {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+}
+
+.lamp__settings__colors__button--selected {
+  width: 30px;
+  height: 30px;
+}
+
+.button-blue {
+  background-color: #254bec;
+}
+
+.button-white {
+  background-color: #fff;
+}
+
+.button-yellow {
+  background-color: #ffc600;
+}
+
+.lamp__settings__brightness {
+}
+
+.lamp__settings__brightness-title {
+}
+
+.lamp__settings__brightness-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lamp__settings__brightness-controls button {
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls-icon {
+  width: 90%;
+  height: 90%;
+  stroke: #424242;
+}
+
+.lamp__settings__brightness-less {
+}
+
+.lamp__settings__brightness-more {
+}
+
+.lamp__settings__brightness-info {
+  font-family: "Open Sans";
+  color: #fff;
+  font-size: 20px;
+}
+
+.condition {
+}
+
+.condition__value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.condition__value {
+  width: 110px;
+  height: 110px;
+  background-color: #dfe0e4;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.condition__value::before {
+  content: "";
+  background-image: url(./../images/settings/condition-temp-bg.png);
+  background-size: 150px 150px;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: -19%;
+  left: -19%;
+}
+
+.condition__value-temp {
+  font-family: "Open Sans";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+  color: #424242;
+}
+
+.condition__controls {
+  display: flex;
+  gap: 30px;
+}
+
+.condition__controls button {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+}
+
+.condition__controls-button-less {
+}
+
+.condition__controls-button-more {
+}
+
+.condition__controls-button-icon {
+  width: 28px;
+  height: 28px;
+  stroke: #424242;
+}
+
+.condition-modes {
+}
+
+.condition-mode {
+}
+
+.mode-cool {
+}
+
+.mode-hot {
+}
+
+.mode-auto {
+}
+
+.condition-mode-icon {
+}
+
+.cool-icon {
+}
+
+.hot-icon {
+}
+
+.auto-icon {
 }

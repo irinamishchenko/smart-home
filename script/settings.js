@@ -4,6 +4,8 @@ const batteryIndex = document.querySelector(".settings__header--battery");
 const switcher = document.querySelector(".switcher");
 const switcherBackground = document.querySelector(".switcher-background");
 const switcherButton = document.querySelector(".switcher-button");
+const main = document.querySelector(".settings__main");
+// let lampColorsControls;
 
 switcher.addEventListener("click", switchDevicePower);
 
@@ -36,7 +38,7 @@ class Device {
           clearInterval(this.timer);
         }
         this.battery -= 1;
-        console.log(this.battery);
+        changeChargePercentage();
       }, 3600000);
     }
   }
@@ -121,6 +123,7 @@ function setSelectedDevice(event) {
   changeSwitcherStyles();
   changeTitle();
   changeChargePercentage();
+  setDeviceSettingsMarkup();
 }
 
 function switchDevicePower() {
@@ -137,9 +140,6 @@ function switchDevicePower() {
   devices
     .find((device) => device.title === localStorage.selectedDevice)
     .changeBattery();
-  //   changeBattery(
-  //     devices.find((device) => device.title === localStorage.selectedDevice)
-  //   );
 }
 
 function changeSwitcherStyles() {
@@ -163,8 +163,80 @@ function changeSwitcherStyles() {
   }
 }
 
-// if (JSON.parse(localStorage.rooms).length > 0) {
-//   // changeTitle();
-//   rooms = JSON.parse(localStorage.rooms);
-//   showRooms();
-// }
+function setDeviceSettingsMarkup() {
+  const container = document.querySelector(".main__device-settings");
+  let deviceSettingsMarkup;
+  switch (localStorage.selectedDevice) {
+    case "light":
+      deviceSettingsMarkup = `<div class="lamp"><div class="lamp__img-container"><img class="lamp-img" src="../images/settings/lamp.png" /><svg class="lamp-icon"><use xlink:href="../images/sprite.svg#lamp-light"></use></svg></div><div class="lamp__settings"><section class="lamp__settings__colors"><h3 class="lamp__settings__colors-title">Colors</h3><div class="lamp__settings__colors__buttons"><button class="lamp__settings__colors__button button-blue" data-color="#254bec"></button><button class="lamp__settings__colors__button button-white" data-color="#fff"></button><button class="lamp__settings__colors__button button-yellow" data-color="#ffc600"></button></div></section><section class="lamp__settings__brightness"><h3 class="lamp__settings__brightness-title">Brightness</h3><div class="lamp__settings__brightness-controls"><button class="lamp__settings__brightness-less"><svg class="controls-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><p class="lamp__settings__brightness-info">50%</p><button class="lamp__settings__brightness-more"><svg class="controls-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></section></div></div>`;
+      //   device.innerHTML = deviceSettingsMarkup;
+      container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".lamp__settings__colors__button")
+        .forEach((button) =>
+          button.addEventListener("click", setSelectedLampColor)
+        );
+      setSelectedLampColor();
+      document
+        .querySelectorAll(".lamp__settings__brightness-controls button")
+        .forEach((button) =>
+          button.addEventListener("click", changeLampBrightness)
+        );
+      break;
+    case "air-condition":
+      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></div><div class="condition-modes"><div class="condition-mode mode-cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="../images/sprite.svg#cool"></use></svg><h4>Cool</h4></div><div class="condition-mode mode-hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="../images/sprite.svg#hot"></use></svg><h4>Hot</h4></div><div class="condition-mode mode-auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="../images/sprite.svg#auto"></use></svg><h4>Auto</h4></div></div></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      break;
+
+    default:
+      break;
+  }
+}
+
+setDeviceSettingsMarkup();
+
+function setSelectedLampColor(event) {
+  let selectedColor;
+  const buttons = document.querySelectorAll(".lamp__settings__colors__button");
+
+  if (!event) {
+    selectedColor = "#fff";
+  } else {
+    selectedColor = event.target.dataset.color;
+  }
+  for (let i = 0; i < buttons.length; i++) {
+    if (buttons[i].dataset.color === selectedColor) {
+      buttons[i].classList.add("lamp__settings__colors__button--selected");
+    } else {
+      buttons[i].classList.remove("lamp__settings__colors__button--selected");
+    }
+  }
+  document.querySelector(".lamp-icon").style.fill = selectedColor;
+}
+
+function changeLampBrightness(event) {
+  const brightnessInfo = document.querySelector(
+    ".lamp__settings__brightness-info"
+  );
+  let brightnessValue = parseInt(brightnessInfo.textContent);
+  const lessButton = document.querySelector(".lamp__settings__brightness-less");
+  const moreButton = document.querySelector(".lamp__settings__brightness-more");
+  const lightIcon = document.querySelector(".lamp-icon");
+  if (brightnessValue === 99) {
+    moreButton.disabled = true;
+  } else if (brightnessValue === 1) {
+    lessButton.disabled = true;
+  } else {
+    moreButton.disabled = false;
+    lessButton.disabled = false;
+  }
+  if (
+    event.currentTarget.classList.value === "lamp__settings__brightness-less"
+  ) {
+    brightnessValue -= 1;
+  } else {
+    brightnessValue += 1;
+  }
+  brightnessInfo.textContent = brightnessValue + "%";
+  lightIcon.style.opacity = `0.${brightnessValue}`;
+}
