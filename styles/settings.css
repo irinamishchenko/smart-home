@@ -185,6 +185,7 @@
 }
 
 .condition {
+  margin-bottom: 80px;
 }
 
 .condition__value-container {
@@ -276,15 +277,6 @@
   gap: 10px;
 }
 
-.mode-cool {
-}
-
-.mode-hot {
-}
-
-.mode-auto {
-}
-
 .condition-mode-icon {
   width: 24px;
   height: 24px;
@@ -334,7 +326,3 @@
 .condition-mode--selected .auto-icon {
   stroke: #fff;
 }
-
-/* .condition-mode--selected {
-    background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
-} */
