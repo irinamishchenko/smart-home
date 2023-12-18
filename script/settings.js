@@ -169,7 +169,6 @@ function setDeviceSettingsMarkup() {
   switch (localStorage.selectedDevice) {
     case "light":
       deviceSettingsMarkup = `<div class="lamp"><div class="lamp__img-container"><img class="lamp-img" src="../images/settings/lamp.png" /><svg class="lamp-icon"><use xlink:href="../images/sprite.svg#lamp-light"></use></svg></div><div class="lamp__settings"><section class="lamp__settings__colors"><h3 class="lamp__settings__colors-title">Colors</h3><div class="lamp__settings__colors__buttons"><button class="lamp__settings__colors__button button-blue" data-color="#254bec"></button><button class="lamp__settings__colors__button button-white" data-color="#fff"></button><button class="lamp__settings__colors__button button-yellow" data-color="#ffc600"></button></div></section><section class="lamp__settings__brightness"><h3 class="lamp__settings__brightness-title">Brightness</h3><div class="lamp__settings__brightness-controls"><button class="lamp__settings__brightness-less"><svg class="controls-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><p class="lamp__settings__brightness-info">50%</p><button class="lamp__settings__brightness-more"><svg class="controls-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></section></div></div>`;
-      //   device.innerHTML = deviceSettingsMarkup;
       container.innerHTML = deviceSettingsMarkup;
       document
         .querySelectorAll(".lamp__settings__colors__button")
@@ -184,8 +183,17 @@ function setDeviceSettingsMarkup() {
         );
       break;
     case "air-condition":
-      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></div><div class="condition-modes"><div class="condition-mode mode-cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="../images/sprite.svg#cool"></use></svg><h4>Cool</h4></div><div class="condition-mode mode-hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="../images/sprite.svg#hot"></use></svg><h4>Hot</h4></div><div class="condition-mode mode-auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="../images/sprite.svg#auto"></use></svg><h4>Auto</h4></div></div></div>`;
+      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></div><ul class="condition-modes"><li class="condition-mode" data-mode="cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="../images/sprite.svg#cool"></use></svg><h4 class="condition-mode-title">Cool</h4></li><li class="condition-mode" data-mode="hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="../images/sprite.svg#hot"></use></svg><h4 class="condition-mode-title">Hot</h4></li><li class="condition-mode" data-mode="auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="../images/sprite.svg#auto"></use></svg><h4 class="condition-mode-title">Auto</h4></li></ul></div>`;
       container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".condition__controls button")
+        .forEach((button) =>
+          button.addEventListener("click", changeConditionTemp)
+        );
+      document
+        .querySelectorAll(".condition-mode")
+        .forEach((mode) => mode.addEventListener("click", setConditionMode));
+      setConditionMode();
       break;
 
     default:
@@ -239,4 +247,34 @@ function changeLampBrightness(event) {
   }
   brightnessInfo.textContent = brightnessValue + "%";
   lightIcon.style.opacity = `0.${brightnessValue}`;
+}
+
+function changeConditionTemp(event) {
+  const tempInfo = document.querySelector(".condition__value-temp");
+  let tempValue = parseInt(tempInfo.textContent);
+  if (
+    event.currentTarget.classList.value === "condition__controls-button-less"
+  ) {
+    tempValue -= 1;
+  } else {
+    tempValue += 1;
+  }
+  tempInfo.textContent = tempValue + "°C";
+}
+
+function setConditionMode(event) {
+  let selectedMode;
+  const modes = document.querySelectorAll(".condition-mode");
+  if (!event) {
+    selectedMode = "auto";
+  } else {
+    selectedMode = event.currentTarget.dataset.mode;
+  }
+  for (let i = 0; i < modes.length; i++) {
+    if (modes[i].dataset.mode === selectedMode) {
+      modes[i].classList.add("condition-mode--selected");
+    } else {
+      modes[i].classList.remove("condition-mode--selected");
+    }
+  }
 }

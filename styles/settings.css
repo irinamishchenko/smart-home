@@ -191,7 +191,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .condition__value {
@@ -250,10 +250,30 @@
   stroke: #424242;
 }
 
+.condition__controls button:hover {
+  background-color: #0051e3;
+}
+
+.condition__controls button:hover .condition__controls-button-icon {
+  stroke: #fff;
+}
+
 .condition-modes {
+  display: flex;
+  justify-content: space-between;
 }
 
 .condition-mode {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  border: 2px solid #dfe0e4;
+  background: linear-gradient(180deg, #dfe0e4 0%, #fff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .mode-cool {
@@ -266,13 +286,55 @@
 }
 
 .condition-mode-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .cool-icon {
+  fill: #424242;
 }
 
 .hot-icon {
+  stroke: #424242;
+  fill: transparent;
 }
 
 .auto-icon {
+  stroke: #424242;
+  fill: transparent;
 }
+
+.condition-mode-title {
+  color: #424242;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.condition-mode:hover,
+.condition-mode--selected {
+  background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+}
+
+.condition-mode:hover .condition-mode-title,
+.condition-mode--selected .condition-mode-title {
+  color: #fff;
+}
+
+.condition-mode:hover .cool-icon,
+.condition-mode--selected .cool-icon {
+  fill: #fff;
+}
+
+.condition-mode:hover .hot-icon,
+.condition-mode:hover .auto-icon,
+.condition-mode--selected .hot-icon,
+.condition-mode--selected .auto-icon {
+  stroke: #fff;
+}
+
+/* .condition-mode--selected {
+    background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+} */
