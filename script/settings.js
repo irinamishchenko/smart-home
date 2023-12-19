@@ -347,6 +347,19 @@ function setDeviceSettingsMarkup() {
         .querySelectorAll(".mode-item")
         .forEach((mode) => mode.addEventListener("click", changeMode));
       break;
+    case "stove":
+      let stoveModesItems = ``;
+      for (let i = 0; i < functions.modes.length; i++) {
+        stoveModesItems += `<li class="stove-mode-item" data-mode="${functions.modes[
+          i
+        ].toLowerCase()}">${functions.modes[i]}</li>`;
+      }
+      deviceSettingsMarkup = `<div class="stove"><ul class="stove__mode-list">${stoveModesItems}</ul></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".mode-item")
+        .forEach((mode) => mode.addEventListener("click", changeMode));
+      break;
 
     default:
       let powerItems = ``;
