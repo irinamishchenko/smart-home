@@ -536,6 +536,97 @@
   color: #fff;
 }
 
+.stove {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+  align-items: center;
+}
+
+.stove__modes {
+}
+
+.stove__modes-title,
+.stove__settings__temp-title,
+.stove__settings__light-title {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ababab;
+  margin-bottom: 20px;
+}
+
+.stove__mode-list {
+  list-style: none;
+}
+
+.stove-mode-item {
+  background-color: #fff;
+  border: 2px solid #dfe0e4;
+  border-radius: 10px;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  color: #424242;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+}
+
+.stove-mode-item:hover,
+.stove-mode-item--selected {
+  background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+  color: #fff;
+}
+
+.stove__settings {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.stove__settings__temp {
+}
+
+.stove__settings__temp_controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stove__settings__temp-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stove__settings__temp-btn-icon {
+  width: 90%;
+  height: 90%;
+  stroke: #424242;
+}
+
+.stove__settings__temp-value {
+  font-family: "Open Sans";
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+}
+
+.stove__setings__light {
+}
+
+.stove__settings__light-button {
+}
+
 .default-device {
   display: flex;
   flex-direction: column;

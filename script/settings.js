@@ -354,7 +354,7 @@ function setDeviceSettingsMarkup() {
           i
         ].toLowerCase()}">${functions.modes[i]}</li>`;
       }
-      deviceSettingsMarkup = `<div class="stove"><ul class="stove__mode-list">${stoveModesItems}</ul></div>`;
+      deviceSettingsMarkup = `<div class="stove"><div class="stove__modes"><h3 class="stove__modes-title">Modes</h3><ul class="stove__mode-list">${stoveModesItems}</ul></div><div class="stove__settings"><div class="stove__settings__temp"><h3 class="stove__settings__temp-title">Temperature</h3><div class="stove__settings__temp_controls"><button class="stove__settings__temp-btn" data-control="less"><svg class="stove__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="stove__settings__temp-value">${functions.temp}°C</p><button class="stove__settings__temp-btn" data-control="more"><svg class="stove__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="stove__setings__light"><h3 class="stove__settings__light-title">Light</h3><button class="stove__settings__light-button">Turn On</button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       document
         .querySelectorAll(".mode-item")
