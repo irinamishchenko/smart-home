@@ -326,3 +326,267 @@
 .condition-mode--selected .auto-icon {
   stroke: #fff;
 }
+
+.coffee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.coffee-img {
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+.coffee-drinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.coffee-drink {
+  height: 220px;
+  width: 140px;
+  background-color: #fff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.coffee-drink-img-wrapper {
+  height: 100px;
+}
+
+.coffee-drink-img {
+  height: 100%;
+}
+
+.coffee-drink-title {
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.coffee-drink-button {
+  font-family: "Open Sans";
+  /* width: 70px; */
+  height: 30px;
+  padding: 0 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e3e7;
+  background-color: transparent;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.tv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 100px;
+}
+
+.tv__programms {
+}
+
+.tv__programms-title,
+.tv__settings__volume-title,
+.tv__settings__controls-title {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ababab;
+  margin-bottom: 20px;
+}
+
+.tv__programms__list {
+  list-style: none;
+}
+
+.tv__programms__list-item {
+  background-color: #fff;
+  border: 2px solid #dfe0e4;
+  border-radius: 10px;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  color: #424242;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+}
+
+.tv__programms__list-item:hover,
+.tv__programms__list-item--selected {
+  background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+  color: #fff;
+}
+
+.tv__settings {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.tv__settings__volume {
+}
+
+.tv__settings__volume-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tv__settings__volume-bar-button,
+.tv__settings__controls-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tv__settings__volume-bar-icon,
+.tv__settings__controls-icon {
+  width: 90%;
+  height: 90%;
+  stroke: #424242;
+}
+
+.control-prev svg {
+  transform: rotate(180deg);
+}
+
+.tv__settings__volume-bar-value {
+  font-family: "Open Sans";
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+}
+
+.tv__settings__controls {
+}
+
+.tv__settings__controls-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mode-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 100px;
+}
+
+.mode-item {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px 10px;
+  border-radius: 12px;
+  border: 2px solid var(--strock-2, #dfe0e4);
+}
+
+.mode-item__img-wrapper {
+  /* width: 100px; */
+  width: 100%;
+}
+
+.mode-item__img {
+  width: 100%;
+}
+
+.mode-item-title {
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.mode-item:hover,
+.mode-item--selected {
+  background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+}
+
+.mode-item:hover .mode-item-title,
+.mode-item--selected .mode-item-title {
+  color: #fff;
+}
+
+.default-device {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 100px;
+}
+
+.default-device__img {
+  height: 200px;
+}
+
+.default-device__wrapper {
+  width: 100%;
+}
+
+.default-device-subtitle {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  color: #ababab;
+  margin-bottom: 15px;
+}
+
+.default-device__powers {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.default-device__power {
+  width: 70px;
+  height: 70px;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  color: #424242;
+  border: 2px solid #dfe0e4;
+}
+
+.default-device__power:hover,
+.default-device__power--selected {
+  background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+  color: #fff;
+}

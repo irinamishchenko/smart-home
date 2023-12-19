@@ -297,6 +297,9 @@
     <path d="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z"  stroke-width="2"></path>
     <path d="M11.6923 17C13.7315 17 16 15.3584 16 13.3333C16 10.4692 14.9186 9.75283 12.249 6.65452C12.1715 6.56458 12.0069 6.67119 12.0526 6.78075C12.9083 8.83155 12.7882 10.3447 11.6923 10.8889C10.5392 11.4614 9.74624 10.246 9.31336 9.75521C9.27179 9.7081 9.19813 9.71522 9.16403 9.76799C8.23497 11.2059 8 12.7363 8 13.3333C8 15.3584 9.6531 17 11.6923 17Z"  stroke-width="2"></path>
   </symbol>
+    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="arrow">
+    <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+  </symbol>
 </svg>
 
 <svg class="icon">
@@ -319,4 +322,6 @@
   <use xlink:href="#cool"></use>
 </svg><svg class="icon">
   <use xlink:href="#hot"></use>
+</svg><svg class="icon">
+  <use xlink:href="#arrow"></use>
 </svg>
