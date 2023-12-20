@@ -121,9 +121,9 @@ function setDeviceFunctions(device) {
       };
       break;
     case "smart-door":
-      functions = { volume: 50 };
+      functions = { password: "1234" };
       break;
-    case "stove":
+    case "oven":
       functions = {
         modes: ["Pizza", "Convection", "Bottom", "Grill", "Fan Grill"],
         temp: 180,
@@ -149,11 +149,11 @@ function setDeviceFunctions(device) {
       functions = {
         modes: [
           "Hand Wash",
-          "Quick wash",
+          "Quick Wash",
           "Sport",
           "Cotton",
-          "Bio Wash",
           "Soft Wash",
+          "Shoes",
         ],
       };
       break;
@@ -269,9 +269,7 @@ function setDeviceSettingsMarkup() {
   const device = rooms
     .find((room) => room.title === localStorage.selectedRoom)
     .devices.find((device) => device.title === localStorage.selectedDevice);
-  console.log(device);
   let { title, functions } = device;
-  console.log(title, functions);
   switch (localStorage.selectedDevice) {
     case "light":
       deviceSettingsMarkup = `<div class="lamp"><div class="lamp__img-container"><img class="lamp-img" src="../images/settings/lamp.png" /><svg class="lamp-icon"><use xlink:href="../images/sprite.svg#lamp-light"></use></svg></div><div class="lamp__settings"><section class="lamp__settings__colors"><h3 class="lamp__settings__colors-title">Colors</h3><div class="lamp__settings__colors__buttons"><button class="lamp__settings__colors__button button-blue" data-color="#254bec"></button><button class="lamp__settings__colors__button button-white" data-color="#fff"></button><button class="lamp__settings__colors__button button-yellow" data-color="#ffc600"></button></div></section><section class="lamp__settings__brightness"><h3 class="lamp__settings__brightness-title">Brightness</h3><div class="lamp__settings__brightness-controls"><button class="lamp__settings__brightness-less"><svg class="controls-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><p class="lamp__settings__brightness-info">50%</p><button class="lamp__settings__brightness-more"><svg class="controls-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></section></div></div>`;
@@ -347,18 +345,79 @@ function setDeviceSettingsMarkup() {
         .querySelectorAll(".mode-item")
         .forEach((mode) => mode.addEventListener("click", changeMode));
       break;
-    case "stove":
-      let stoveModesItems = ``;
+    case "oven":
+      let ovenModesItems = ``;
       for (let i = 0; i < functions.modes.length; i++) {
-        stoveModesItems += `<li class="stove-mode-item" data-mode="${functions.modes[
+        ovenModesItems += `<li class="oven-mode-item" data-mode="${functions.modes[
           i
         ].toLowerCase()}">${functions.modes[i]}</li>`;
       }
-      deviceSettingsMarkup = `<div class="stove"><div class="stove__modes"><h3 class="stove__modes-title">Modes</h3><ul class="stove__mode-list">${stoveModesItems}</ul></div><div class="stove__settings"><div class="stove__settings__temp"><h3 class="stove__settings__temp-title">Temperature</h3><div class="stove__settings__temp_controls"><button class="stove__settings__temp-btn" data-control="less"><svg class="stove__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="stove__settings__temp-value">${functions.temp}°C</p><button class="stove__settings__temp-btn" data-control="more"><svg class="stove__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="stove__setings__light"><h3 class="stove__settings__light-title">Light</h3><button class="stove__settings__light-button">Turn On</button></div></div></div>`;
+      deviceSettingsMarkup = `<div class="oven"><div class="oven-modes"><h3 class="oven__modes-title">Modes</h3><ul class="oven__mode-list">${ovenModesItems}</ul></div><div class="oven__settings"><div class="oven__settings__temp"><h3 class="oven__settings__temp-title">Temperature</h3><div class="oven__settings__temp_controls"><button class="oven__settings__temp-btn" data-control="less"><svg class="oven__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="oven__settings__temp-value">${
+        functions.temp
+      }°C</p><button class="oven__settings__temp-btn" data-control="more"><svg class="oven__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="oven__setings__light"><h3 class="oven__settings__light-title">Light</h3><button class="oven__settings__light-button">${
+        functions.light ? "Turn off" : "Turn on"
+      }</button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       document
-        .querySelectorAll(".mode-item")
-        .forEach((mode) => mode.addEventListener("click", changeMode));
+        .querySelectorAll(".oven-mode-item")
+        .forEach((mode) => mode.addEventListener("click", changeOvenMode));
+      document
+        .querySelectorAll(".oven__settings__temp-btn")
+        .forEach((button) => button.addEventListener("click", changeOvenTemp));
+      document
+        .querySelector(".oven__settings__light-button")
+        .addEventListener("click", toggleOvenLight);
+      break;
+    case "loud":
+      deviceSettingsMarkup = `<div class="loud"><img class="loud-img" src="./../images/settings/loud.png"/><div class="loud__volume"><h3 class="loud__volume-title">Volume</h3><div class="loud__volume-container"><button class="loud__volume-button" data-volume="less"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-less"></use></svg></button><p class="loud__volume-value">${functions.volume}</p><button class="loud__volume-button" data-volume="more"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-more"></use></svg></button></div></div></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".loud__volume-button")
+        .forEach((button) =>
+          button.addEventListener("click", changeLoudVolume)
+        );
+      break;
+    case "rice-cooker":
+      let cookerModesItems = ``;
+      functions.modes.forEach((mode) => {
+        let imageUrl = `./../images/settings/${mode
+          .toLowerCase()
+          .split(" ")
+          .join("-")}.png`;
+        let item = `<li class="cooker__list-item" data-mode="${mode
+          .toLowerCase()
+          .split(" ")
+          .join(
+            "-"
+          )}"><div class="cooker__list-item-img-wrapper"><img class="cooker__list-item-img" src="${imageUrl}" alt="${mode}" /></div><h3 class="cooker__list-item-title">${mode}</h3></li>`;
+        cookerModesItems += item;
+      });
+      deviceSettingsMarkup = `<div class="cooker"><ul class="cooker__list">${cookerModesItems}</ul></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".cooker__list-item")
+        .forEach((item) => item.addEventListener("click", changeCookerMode));
+      break;
+    case "washing-machine":
+      let washingModesItems = ``;
+      functions.modes.forEach((mode) => {
+        let kebabItemTitle = mode.toLowerCase().split(" ").join("-");
+        let item = `<li class="washing__list-item ${kebabItemTitle}" data-mode="${kebabItemTitle}">${mode}<svg class="washing__list-item-icon"><use xlink:href="./../images/sprite.svg#${kebabItemTitle}"></use></svg></li>`;
+        washingModesItems += item;
+      });
+      deviceSettingsMarkup = `<div class="washing"><div class="washing__pointer"><img class="washing__pointer-img" src="./../images/settings/pointer.png" /></div><ul class="washing__list">${washingModesItems}</ul></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".washing__list-item")
+        .forEach((mode) => mode.addEventListener("click", changeWashingMode));
+      break;
+    case "microwave-oven":
+      deviceSettingsMarkup = `<div class=""></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      break;
+    case "smart-door":
+      deviceSettingsMarkup = `<div class="door"></div>`;
+      container.innerHTML = deviceSettingsMarkup;
       break;
 
     default:
@@ -538,7 +597,7 @@ function changeTvVolume(event) {
   volumeEl.textContent = volumeValue + "%";
 }
 
-function changeMode(event) {
+function changeOvenMode(event) {
   let selectedMode;
   const modeElements = document.querySelectorAll(".mode-item");
   selectedMode = event.currentTarget.dataset.mode;
@@ -547,6 +606,128 @@ function changeMode(event) {
       modeElements[i].classList.add("mode-item--selected");
     } else {
       modeElements[i].classList.remove("mode-item--selected");
+    }
+  }
+}
+
+function changeOvenTemp(event) {
+  const ovenTempEl = document.querySelector(".oven__settings__temp-value");
+  const lessButton = document.querySelector(
+    ".oven__settings__temp-btn[data-control='less'"
+  );
+  const moreButton = document.querySelector(
+    ".oven__settings__temp-btn[data-control='more'"
+  );
+  let ovenTempValue = parseInt(ovenTempEl.textContent);
+  if (ovenTempValue === 1) {
+    lessButton.disabled = true;
+  } else if (ovenTempValue === 319) {
+    moreButton.disabled = true;
+  } else {
+    lessButton.disabled = false;
+    moreButton.disabled = false;
+  }
+  if (event.currentTarget.dataset.control === "less") {
+    ovenTempValue -= 1;
+  } else {
+    ovenTempValue += 1;
+  }
+  ovenTempEl.textContent = ovenTempValue + "°C";
+}
+
+function toggleOvenLight(event) {
+  rooms
+    .find((room) => room.title === localStorage.selectedRoom)
+    .devices.find(
+      (device) => device.title === localStorage.selectedDevice
+    ).functions.light = !rooms
+    .find((room) => room.title === localStorage.selectedRoom)
+    .devices.find((device) => device.title === localStorage.selectedDevice)
+    .functions.light;
+  if (
+    rooms
+      .find((room) => room.title === localStorage.selectedRoom)
+      .devices.find((device) => device.title === localStorage.selectedDevice)
+      .functions.light
+  ) {
+    event.currentTarget.classList.add("oven__settings__light-button--active");
+  } else {
+    event.currentTarget.classList.remove(
+      "oven__settings__light-button--active"
+    );
+  }
+  localStorage.setItem("rooms", JSON.stringify(rooms));
+}
+
+function changeLoudVolume(event) {
+  const lessButton = document.querySelector(
+    ".loud__volume-button[data-volume='less'"
+  );
+  const moreButton = document.querySelector(
+    ".loud__volume-button[data-volume='more'"
+  );
+  const volumeValueEl = document.querySelector(".loud__volume-value");
+  let volumeValue = +volumeValueEl.textContent;
+  if (volumeValue === 99) {
+    moreButton.disabled = true;
+  } else if (volumeValue === 1) {
+    lessButton.disabled = true;
+  } else {
+    moreButton.disabled = false;
+    lessButton.disabled = false;
+  }
+  if (event.currentTarget.dataset.volume === "less") {
+    volumeValue -= 1;
+  } else {
+    volumeValue += 1;
+  }
+  volumeValueEl.textContent = volumeValue;
+}
+
+function changeCookerMode(event) {
+  let selectedMode;
+  const modes = document.querySelectorAll(".cooker__list-item");
+  selectedMode = event.currentTarget.dataset.mode;
+  for (let i = 0; i < modes.length; i++) {
+    if (modes[i].dataset.mode === selectedMode) {
+      modes[i].classList.add("cooker__list-item--selected");
+    } else {
+      modes[i].classList.remove("cooker__list-item--selected");
+    }
+  }
+}
+
+function changeWashingMode(event) {
+  let selectedMode;
+  const modes = document.querySelectorAll(".washing__list-item ");
+  const pointer = document.querySelector(".washing__pointer");
+  selectedMode = event.currentTarget.dataset.mode;
+  switch (selectedMode) {
+    case "quick-wash":
+      pointer.style.transform = "rotate(30deg)";
+      break;
+    case "sport":
+      pointer.style.transform = "rotate(130deg)";
+      break;
+    case "cotton":
+      pointer.style.transform = "rotate(180deg)";
+      break;
+    case "soft-wash":
+      pointer.style.transform = "rotate(220deg)";
+      break;
+    case "shoes":
+      pointer.style.transform = "rotate(330deg)";
+      break;
+
+    default:
+      pointer.style.transform = "rotate(0deg)";
+      break;
+  }
+  for (let i = 0; i < modes.length; i++) {
+    if (modes[i].dataset.mode === selectedMode) {
+      modes[i].classList.add("washing__list-item--selected");
+    } else {
+      modes[i].classList.remove("washing__list-item--selected");
     }
   }
 }
