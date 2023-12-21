@@ -1,79 +1,111 @@
-// const rooms = [];
+async function getWeather() {
+  const response = await fetch(
+    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Kyiv/today?unitGroup=metric&key=58BUHDRU8S3T4AFJJW7S8R4VV"
+  );
+  weather = await response.json();
+  let { temp, icon } = weather.days[0];
+  showWeather(temp, icon);
+}
 
-// const makeRoomBtn = document.querySelector(".main__btn-add-room");
-// const title = document.querySelector(".main--title");
-// const modalWrapper = document.querySelector(".add-room-modal-wrapper");
-// const modal = document.querySelector(".modal");
-// const input = document.querySelector(".modal--input");
-// const btnCancel = document.querySelector(".modal__buttons-cancel");
-// const btnAdd = document.querySelector(".modal__buttons-add");
-// const roomsList = document.querySelector(".main__rooms");
+getWeather();
 
-// makeRoomBtn.addEventListener("click", openModal);
-// btnCancel.addEventListener("click", closeModal);
-// btnAdd.addEventListener("click", setRoom);
+document
+  .querySelector(".header__add-user-btn")
+  .addEventListener("click", addNewUser);
 
-// function openModal() {
-//   modalWrapper.style.display = "block";
-// }
+function showUsers() {
+  let users = [];
+  if (localStorage.users) {
+    users = JSON.parse(localStorage.getItem("users"));
+  }
+  createUsersList(users);
+}
 
-// function closeModal() {
-//   modalWrapper.style.display = "none";
-// }
+showUsers();
 
-// class Room {
-//   constructor(name, image) {
-//     this.name = name;
-//     this.image = image;
-//   }
-// }
+function createUsersList(users) {
+  let usersListItems = ``;
+  users.forEach((user) => {
+    let userItem = createUserItem(user);
+    usersListItems += userItem;
+  });
+  document.querySelector(".header__users__list").innerHTML = usersListItems;
+  document
+    .querySelectorAll(".header__users__list-item")
+    .forEach((user) => user.addEventListener("click", selectUser));
+}
 
-// function setRoom() {
-//   changeTitle();
-//   let image = setImage(input.value);
-//   console.log(image);
-//   const room = new Room(input.value, image);
-//   rooms.push(room);
-//   input.value = "";
-//   closeModal();
-//   addRoom();
-// }
+function createUserItem(user) {
+  return `<li class="header__users__list-item"><div class="header__users__list-item__image-wrapper"><img class="header__users__list-item__image" src="images/user.png" /></div><h3 class="header__users__list-item__name">${user}</h3></li>`;
+}
 
-// function changeTitle() {
-//   title.textContent = "Your rooms";
-// }
+function addNewUser() {
+  let users = [];
+  let newUser = prompt("Enter your name");
+  if (newUser) {
+    if (localStorage.users) {
+      users = JSON.parse(localStorage.getItem("users"));
+    }
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    createUsersList(users);
+  } else {
+    alert("Try again!");
+    addNewUser();
+  }
+}
 
-// function setImage(value) {
-//   switch (value.toLowerCase()) {
-//     case "kitchen":
-//       return "images/kitchen.jpg";
-//       break;
-//     case "bathroom":
-//       return "images/bathroom.jpg";
-//       break;
-//     case "living room":
-//       return "images/living-room.jpg";
-//       break;
-//     case "bedroom":
-//       return "images/bedroom.jpg";
-//       break;
-//     case "children's room":
-//       return "images/children-room.jpg";
-//       break;
-//     case "office":
-//       return "images/office.jpg";
-//       break;
-//     default:
-//       return "images/other-room.jpg";
-//       break;
-//   }
-// }
+function selectUser(event) {
+  const usersElements = document.querySelectorAll(".header__users__list-item");
+  for (let i = 0; i < usersElements.length; i++) {
+    if (usersElements[i].textContent === event.currentTarget.textContent) {
+      usersElements[i].classList.add("header__users__list-item--selected");
+    } else {
+      usersElements[i].classList.remove("header__users__list-item--selected");
+    }
+  }
+  localStorage.setItem("selectedUser", event.currentTarget.textContent);
+  greetUser();
+}
 
-// function addRoom() {
-//   const roomsListItems = [];
-//   for (let i = 0; i < rooms.length; i++) {
-//     let item = `<li class="rooms--item"><h2 class="room--item--title">${rooms[i].name}</h2><img class="room--item--image" src="${rooms[i].image}" /></li>`;
-//     roomsListItems.push(item);
-//   }
-//   roomsList.innerHTML = roomsListItems;
-// }
+function greetUser() {
+  const name = localStorage.selectedUser;
+  const greetingElement = document.querySelector(".header__greeting");
+  greetingElement.textContent = `Hello, ${name}!`;
+}
+
+function showWeather(temp, icon) {
+  const container = document.querySelector(".header__weather");
+  const weather = `<img class="header__weather-icon" src="images/weather-icons/${icon}.png" /><p class="header__weather-temp">${temp}°C</p>`;
+  container.innerHTML = weather;
+}
+
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+function showDate() {
+  const container = document.querySelector(".header__date");
+  const now = new Date();
+  const month = now.getMonth();
+  const date = now.getDate();
+  const day = now.getDay();
+  const currentDate = `<img class="header__date-icon" src="images/calendar.png" /><p class="header__date-value">${
+    weekDays[day - 1]
+  }, ${months[month]} ${date}th</p>`;
+  container.innerHTML = currentDate;
+}
+
+showDate();

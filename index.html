@@ -7,7 +7,21 @@
     <title>Smart Home</title>
   </head>
   <body>
-    <header class="header"></header>
+    <header class="header">
+      <div class="header__users">
+        <ul class="header__users__list"></ul>
+        <button class="header__add-user-btn">
+          <svg class="header__add-user-btn-icon">
+            <use xlink:href="images/sprite.svg#plus"></use>
+          </svg>
+        </button>
+        <h1 class="header__greeting"></h1>
+        <div class="header-container">
+          <div class="header__weather"></div>
+          <div class="header__date"></div>
+        </div>
+      </div>
+    </header>
     <footer class="footer">
       <nav>
         <ul class="footer__nav">

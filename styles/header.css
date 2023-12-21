@@ -4,4 +4,110 @@
   background-size: 20%;
   border-radius: 0 0 5% 5%;
   margin-bottom: 30px;
+  padding: 10px 15px;
+  position: relative;
+}
+
+.header__greeting {
+  font-family: "Open Sans";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  color: #fff;
+}
+
+.header__users {
+}
+
+.header__users__list {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.header__users__list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__users__list-item__image-wrapper,
+.header__add-user-btn {
+  width: 40px;
+  height: 40px;
+  background-color: #f5d046;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #424242;
+}
+
+.header__users__list-item__image {
+  width: 20px;
+}
+
+.header__users__list-item__name {
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  color: #424242;
+}
+
+.header__users__list-item--selected .header__users__list-item__image-wrapper {
+  background-color: #fff;
+  border-color: #254bec;
+}
+
+.header__users__list-item--selected .header__users__list-item__name {
+  color: #fff;
+}
+
+.header__add-user-btn {
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.header__add-user-btn-icon {
+  stroke: #424242;
+  width: 90%;
+  height: 90%;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.header__weather,
+.header__date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__weather-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.header__weather-temp,
+.header__date-value {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  color: #fff;
+}
+
+.header__date-icon {
+  width: 20px;
+  height: 20px;
 }
