@@ -121,7 +121,7 @@ function setDeviceFunctions(device) {
       };
       break;
     case "smart-door":
-      functions = { password: "1234" };
+      functions = { password: "1234", isOpen: false };
       break;
     case "oven":
       functions = {
@@ -411,13 +411,28 @@ function setDeviceSettingsMarkup() {
         .querySelectorAll(".washing__list-item")
         .forEach((mode) => mode.addEventListener("click", changeWashingMode));
       break;
-    case "microwave-oven":
-      deviceSettingsMarkup = `<div class=""></div>`;
-      container.innerHTML = deviceSettingsMarkup;
-      break;
     case "smart-door":
-      deviceSettingsMarkup = `<div class="door"></div>`;
+      deviceSettingsMarkup = `<div class="door"><img class="door-img" src="./../images/settings/smart-door.png" /><div class="door__password-container"><input class="door__password-input" type="number" /><button class="door__password-button">${
+        functions.isOpen ? "Close" : "Open"
+      } the door</button></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelector(".door__password-button")
+        .addEventListener("click", changeDoorStatus);
+      break;
+    case "microwave-oven":
+      deviceSettingsMarkup = `<div class="microwave"><div class="microwave__power"><button class="microwave__power-btn" data-power="less"><svg class="microwave__power-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__power-value">${functions.power} W</p><button class="microwave__power-btn" data-power="more"><svg class="microwave__power-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div><div class="microwave__time"><button class="microwave__time-btn" data-time="less"><svg class="microwave__time-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__time-value">${functions.time} min</p><button class="microwave__time-btn" data-time="more"><svg class="microwave__time-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div>`;
+      container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelectorAll(".microwave__power-btn")
+        .forEach((button) =>
+          button.addEventListener("click", changeMicrowavePower)
+        );
+      document
+        .querySelectorAll(".microwave__time-btn")
+        .forEach((button) =>
+          button.addEventListener("click", changeMicrowaveTime)
+        );
       break;
 
     default:
@@ -730,4 +745,80 @@ function changeWashingMode(event) {
       modes[i].classList.remove("washing__list-item--selected");
     }
   }
+}
+
+function changeDoorStatus(event) {
+  const input = document.querySelector(".door__password-input");
+  let functions = devices.find(
+    (device) => device.title === localStorage.selectedDevice
+  ).functions;
+  let { password, isOpen } = functions;
+  if (input.value !== password) {
+    alert("Incorrect password!");
+    input.value = "";
+  } else {
+    rooms
+      .find((room) => room.title === localStorage.selectedRoom)
+      .devices.find(
+        (device) => device.title === localStorage.selectedDevice
+      ).functions.isOpen = !rooms
+      .find((room) => room.title === localStorage.selectedRoom)
+      .devices.find((device) => device.title === localStorage.selectedDevice)
+      .functions.isOpen;
+    localStorage.setItem("rooms", JSON.stringify(rooms));
+    event.target.textContent === "Open the door"
+      ? (event.target.textContent = "Close the door")
+      : (event.target.textContent = "Open the door");
+    input.value = "";
+  }
+}
+
+function changeMicrowavePower(event) {
+  const lessButton = document.querySelector(
+    ".microwave__power-btn[data-power='less'"
+  );
+  const moreButton = document.querySelector(
+    ".microwave__power-btn[data-power='more'"
+  );
+  const valueEl = document.querySelector(".microwave__power-value");
+  let value = parseInt(valueEl.textContent);
+  if (value === 899) {
+    moreButton.disabled = true;
+  } else if (value === 91) {
+    lessButton.disabled = true;
+  } else {
+    moreButton.disabled = false;
+    lessButton.disabled = false;
+  }
+  if (event.currentTarget.dataset.power === "less") {
+    value -= 1;
+  } else {
+    value += 1;
+  }
+  valueEl.textContent = value + " W";
+}
+
+function changeMicrowaveTime(event) {
+  const lessButton = document.querySelector(
+    ".microwave__time-btn[data-time='less'"
+  );
+  const moreButton = document.querySelector(
+    ".microwave__time-btn[data-time='more'"
+  );
+  const valueEl = document.querySelector(".microwave__time-value");
+  let value = parseInt(valueEl.textContent);
+  if (value === 59) {
+    moreButton.disabled = true;
+  } else if (value === 1) {
+    lessButton.disabled = true;
+  } else {
+    moreButton.disabled = false;
+    lessButton.disabled = false;
+  }
+  if (event.currentTarget.dataset.time === "less") {
+    value -= 1;
+  } else {
+    value += 1;
+  }
+  valueEl.textContent = value + " min";
 }

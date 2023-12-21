@@ -887,6 +887,102 @@
   stroke: #fff;
 }
 
+.door {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.door-img {
+  width: 200px;
+}
+
+.door__password-container {
+  display: flex;
+  gap: 30px;
+}
+
+.door__password-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #254bec;
+  color: #fff;
+  font-size: 20px;
+  width: 100px;
+  caret-color: #fff;
+}
+
+.door__password-button {
+  padding: 6px 10px;
+  border-radius: 30px;
+  background-color: #254bec;
+  border: 2px solid transparent;
+  color: #fff;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.door__password-button:hover {
+  background-color: #fff;
+  border-color: #254bec;
+  color: #254bec;
+}
+
+.microwave {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.microwave__power,
+.microwave__time {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.microwave__power-btn,
+.microwave__time-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: 2px solid #dfe0e4;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.microwave__power-btn:hover,
+.microwave__time-btn:hover {
+  background: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+}
+
+.microwave__power-btn-icon,
+.microwave__time-btn-icon {
+  width: 90%;
+  height: 90%;
+  stroke: #424242;
+}
+
+.microwave__power-btn:hover .microwave__power-btn-icon,
+.microwave__time-btn:hover .microwave__time-btn-icon {
+  stroke: #fff;
+}
+
+.microwave__power-value,
+.microwave__time-value {
+  font-family: "Open Sans";
+  color: #fff;
+  font-size: 20px;
+}
+
 .default-device {
   display: flex;
   flex-direction: column;
