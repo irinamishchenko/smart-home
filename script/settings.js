@@ -73,7 +73,7 @@ function setDevices() {
 let devices = [];
 setDevices();
 
-if (devices.length > 1) {
+if (devices.length > 0) {
   showDevices();
 }
 

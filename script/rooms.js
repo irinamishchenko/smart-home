@@ -42,7 +42,7 @@ function setRoom() {
   try {
     checkRoomName(addRoomInput.value);
     let image = setImage(addRoomInput.value);
-    const room = new Room(addRoomInput.value, image, []);
+    const room = new Room(addRoomInput.value.toLowerCase(), image, []);
     rooms.push(room);
     localStorage.setItem("rooms", JSON.stringify(rooms));
     closeAddRoomModal();
