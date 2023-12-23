@@ -1,3 +1,15 @@
+import {
+  changeValue,
+  changeMode,
+  setSelectedLampColor,
+  changeLampBrightness,
+  makeCoffee,
+  setSelectedProrgamm,
+  toggleOvenLight,
+  changeWashingMode,
+  changeDoorStatus,
+} from "./deviceFunctions.js";
+
 const devicesList = document.querySelector(".settings__header__devices-list");
 const title = document.querySelector(".settings__header--title");
 const batteryIndex = document.querySelector(".settings__header--battery");
@@ -172,9 +184,6 @@ function setDeviceFunctions(device) {
         ],
       };
       break;
-    case "water-boiler":
-      functions = { temp: 50 };
-      break;
 
     default:
       break;
@@ -302,17 +311,35 @@ function setDeviceSettingsMarkup() {
         );
       break;
     case "air-condition":
-      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></div><ul class="condition-modes"><li class="condition-mode" data-mode="cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="../images/sprite.svg#cool"></use></svg><h4 class="condition-mode-title">Cool</h4></li><li class="condition-mode" data-mode="hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="../images/sprite.svg#hot"></use></svg><h4 class="condition-mode-title">Hot</h4></li><li class="condition-mode" data-mode="auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="../images/sprite.svg#auto"></use></svg><h4 class="condition-mode-title">Auto</h4></li></ul></div>`;
+      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less" data-temp="less"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more" data-temp="more"><svg class="condition__controls-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></div><ul class="condition-modes"><li class="condition-mode" data-mode="cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="../images/sprite.svg#cool"></use></svg><h4 class="condition-mode-title">Cool</h4></li><li class="condition-mode" data-mode="hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="../images/sprite.svg#hot"></use></svg><h4 class="condition-mode-title">Hot</h4></li><li class="condition-mode" data-mode="auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="../images/sprite.svg#auto"></use></svg><h4 class="condition-mode-title">Auto</h4></li></ul></div>`;
       container.innerHTML = deviceSettingsMarkup;
-      document
-        .querySelectorAll(".condition__controls button")
-        .forEach((button) =>
-          button.addEventListener("click", changeConditionTemp)
-        );
-      document
-        .querySelectorAll(".condition-mode")
-        .forEach((mode) => mode.addEventListener("click", setConditionMode));
-      setConditionMode();
+      const tempConditionerButtons = document.querySelectorAll(
+        ".condition__controls button"
+      );
+      const tempValueEl = document.querySelector(".condition__value-temp");
+      tempConditionerButtons.forEach((button) =>
+        button.addEventListener("click", () =>
+          changeValue(
+            tempConditionerButtons[0],
+            tempConditionerButtons[1],
+            tempValueEl,
+            5,
+            35,
+            "°C",
+            event.currentTarget.dataset.temp
+          )
+        )
+      );
+      const conditionModes = document.querySelectorAll(".condition-mode");
+      conditionModes.forEach((mode) =>
+        mode.addEventListener("click", (event) =>
+          changeMode(
+            conditionModes,
+            event.currentTarget.dataset.mode,
+            "condition-mode--selected"
+          )
+        )
+      );
       break;
     case "coffee-machine":
       deviceSettingsMarkup = `<div class="coffee"><img class="coffee-img" src="./../images/settings/coffee-machine.png"/><ul class="coffee-drinks"><li class="coffee-drink" data-coffee="cappuccino"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/cappuccino.png" alt="cappuccino" /></div><h3 class="coffee-drink-title">Cappuccino</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="cocoa"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/cocoa.png" alt="cocoa" /></div><h3 class="coffee-drink-title">Cocoa</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="latte"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/latte.png" alt="latte" /></div><h3 class="coffee-drink-title">Latte</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="espresso"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/espresso.png" alt="espresso" /></div><h3 class="coffee-drink-title">Espresso</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="coffee"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/coffee.png" alt="coffee" /></div><h3 class="coffee-drink-title">Black Coffee</h3><button class="coffee-drink-button">Start</button></li></ul></div>`;
@@ -333,10 +360,26 @@ function setDeviceSettingsMarkup() {
         .forEach((programm) =>
           programm.addEventListener("click", setSelectedProrgamm)
         );
-      document
-        .querySelectorAll(".tv__settings__volume-bar-button")
-        .forEach((button) => button.addEventListener("click", changeTvVolume));
       setSelectedProrgamm();
+      const volumeButtons = document.querySelectorAll(
+        ".tv__settings__volume-bar-button"
+      );
+      const volumeEl = document.querySelector(
+        ".tv__settings__volume-bar-value"
+      );
+      volumeButtons.forEach((button) =>
+        button.addEventListener("click", (event) =>
+          changeValue(
+            volumeButtons[0],
+            volumeButtons[1],
+            volumeEl,
+            1,
+            99,
+            "%",
+            event.currentTarget.dataset.volume
+          )
+        )
+      );
       document
         .querySelectorAll(".tv__settings__controls-button")
         .forEach((button) =>
@@ -369,28 +412,59 @@ function setDeviceSettingsMarkup() {
       }
       deviceSettingsMarkup = `<div class="oven"><div class="oven-modes"><h3 class="oven__modes-title">Modes</h3><ul class="oven__mode-list">${ovenModesItems}</ul></div><div class="oven__settings"><div class="oven__settings__temp"><h3 class="oven__settings__temp-title">Temperature</h3><div class="oven__settings__temp_controls"><button class="oven__settings__temp-btn" data-control="less"><svg class="oven__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="oven__settings__temp-value">${
         functions.temp
-      }°C</p><button class="oven__settings__temp-btn" data-control="more"><svg class="oven__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="oven__setings__light"><h3 class="oven__settings__light-title">Light</h3><button class="oven__settings__light-button">${
+      } °C</p><button class="oven__settings__temp-btn" data-control="more"><svg class="oven__settings__temp-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="oven__setings__light"><h3 class="oven__settings__light-title">Light</h3><button class="oven__settings__light-button">${
         functions.light ? "Turn off" : "Turn on"
       }</button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
-      document
-        .querySelectorAll(".oven-mode-item")
-        .forEach((mode) => mode.addEventListener("click", changeOvenMode));
-      document
-        .querySelectorAll(".oven__settings__temp-btn")
-        .forEach((button) => button.addEventListener("click", changeOvenTemp));
+      const ovenModes = document.querySelectorAll(".oven-mode-item");
+      ovenModes.forEach((mode) =>
+        mode.addEventListener("click", (event) =>
+          changeMode(
+            ovenModes,
+            event.currentTarget.dataset.mode,
+            "mode-item--selected"
+          )
+        )
+      );
+      const tempButtons = document.querySelectorAll(
+        ".oven__settings__temp-btn"
+      );
+      const ovenTempEl = document.querySelector(".oven__settings__temp-value");
+      tempButtons.forEach((button) =>
+        button.addEventListener("click", (event) =>
+          changeValue(
+            tempButtons[0],
+            tempButtons[1],
+            ovenTempEl,
+            1,
+            319,
+            "°C",
+            event.currentTarget.dataset.control
+          )
+        )
+      );
       document
         .querySelector(".oven__settings__light-button")
         .addEventListener("click", toggleOvenLight);
       break;
     case "loud":
-      deviceSettingsMarkup = `<div class="loud"><img class="loud-img" src="./../images/settings/loud.png"/><div class="loud__volume"><h3 class="loud__volume-title">Volume</h3><div class="loud__volume-container"><button class="loud__volume-button" data-volume="less"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-less"></use></svg></button><p class="loud__volume-value">${functions.volume}</p><button class="loud__volume-button" data-volume="more"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-more"></use></svg></button></div></div></div>`;
+      deviceSettingsMarkup = `<div class="loud"><img class="loud-img" src="./../images/settings/loud.png"/><div class="loud__volume"><h3 class="loud__volume-title">Volume</h3><div class="loud__volume-container"><button class="loud__volume-button" data-volume="less"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-less"></use></svg></button><p class="loud__volume-value">${functions.volume} %</p><button class="loud__volume-button" data-volume="more"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-more"></use></svg></button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
-      document
-        .querySelectorAll(".loud__volume-button")
-        .forEach((button) =>
-          button.addEventListener("click", changeLoudVolume)
-        );
+      const buttons = document.querySelectorAll(".loud__volume-button");
+      const valueEl = document.querySelector(".loud__volume-value");
+      buttons.forEach((button) =>
+        button.addEventListener("click", (event) =>
+          changeValue(
+            buttons[0],
+            buttons[1],
+            valueEl,
+            1,
+            99,
+            "%",
+            event.currentTarget.dataset.volume
+          )
+        )
+      );
       break;
     case "rice-cooker":
       let cookerModesItems = ``;
@@ -409,9 +483,16 @@ function setDeviceSettingsMarkup() {
       });
       deviceSettingsMarkup = `<div class="cooker"><ul class="cooker__list">${cookerModesItems}</ul></div>`;
       container.innerHTML = deviceSettingsMarkup;
-      document
-        .querySelectorAll(".cooker__list-item")
-        .forEach((item) => item.addEventListener("click", changeCookerMode));
+      const cookerModes = document.querySelectorAll(".cooker__list-item");
+      cookerModes.forEach((mode) =>
+        mode.addEventListener("click", (event) =>
+          changeMode(
+            cookerModes,
+            event.currentTarget.dataset.mode,
+            "cooker__list-item--selected"
+          )
+        )
+      );
       break;
     case "washing-machine":
       let washingModesItems = ``;
@@ -438,18 +519,37 @@ function setDeviceSettingsMarkup() {
     case "microwave-oven":
       deviceSettingsMarkup = `<div class="microwave"><div class="microwave__power"><button class="microwave__power-btn" data-power="less"><svg class="microwave__power-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__power-value">${functions.power} W</p><button class="microwave__power-btn" data-power="more"><svg class="microwave__power-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div><div class="microwave__time"><button class="microwave__time-btn" data-time="less"><svg class="microwave__time-btn-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__time-value">${functions.time} min</p><button class="microwave__time-btn" data-time="more"><svg class="microwave__time-btn-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
-      document
-        .querySelectorAll(".microwave__power-btn")
-        .forEach((button) =>
-          button.addEventListener("click", changeMicrowavePower)
-        );
-      document
-        .querySelectorAll(".microwave__time-btn")
-        .forEach((button) =>
-          button.addEventListener("click", changeMicrowaveTime)
-        );
+      const powerButtons = document.querySelectorAll(".microwave__power-btn");
+      const powerValueEl = document.querySelector(".microwave__power-value");
+      powerButtons.forEach((button) =>
+        button.addEventListener("click", (event) =>
+          changeValue(
+            powerButtons[0],
+            powerButtons[1],
+            powerValueEl,
+            91,
+            899,
+            "W",
+            event.currentTarget.dataset.power
+          )
+        )
+      );
+      const timeButtons = document.querySelectorAll(".microwave__time-btn");
+      const timeValueEl = document.querySelector(".microwave__time-value");
+      timeButtons.forEach((button) =>
+        button.addEventListener("click", (event) =>
+          changeValue(
+            timeButtons[0],
+            timeButtons[1],
+            timeValueEl,
+            1,
+            59,
+            "min",
+            event.currentTarget.dataset.time
+          )
+        )
+      );
       break;
-
     default:
       let powerItems = ``;
       functions.power.forEach(
@@ -458,382 +558,9 @@ function setDeviceSettingsMarkup() {
       );
       deviceSettingsMarkup = `<div class="default-device"><img class="default-device__img" src="./../images/settings/${title}.png" alt="${title}" /><div class="default-device__wrapper"><h3 class="default-device-subtitle">Power</h3><ul class="default-device__powers">${powerItems}</ul></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
-      document
-        .querySelectorAll(".default-device__power")
-        .forEach((item) => item.addEventListener("click", setPowerDefault));
-      setPowerDefault();
+      const defaultModes = document.querySelectorAll(".default-device__power");
       break;
   }
 }
 
 setDeviceSettingsMarkup();
-
-function setSelectedLampColor(event) {
-  let selectedColor;
-  const buttons = document.querySelectorAll(".lamp__settings__colors__button");
-  if (!event) {
-    selectedColor = "#fff";
-  } else {
-    selectedColor = event.target.dataset.color;
-  }
-  for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].dataset.color === selectedColor) {
-      buttons[i].classList.add("lamp__settings__colors__button--selected");
-    } else {
-      buttons[i].classList.remove("lamp__settings__colors__button--selected");
-    }
-  }
-  document.querySelector(".lamp-icon").style.fill = selectedColor;
-}
-
-function changeLampBrightness(event) {
-  const brightnessInfo = document.querySelector(
-    ".lamp__settings__brightness-info"
-  );
-  let brightnessValue = parseInt(brightnessInfo.textContent);
-  const lessButton = document.querySelector(".lamp__settings__brightness-less");
-  const moreButton = document.querySelector(".lamp__settings__brightness-more");
-  const lightIcon = document.querySelector(".lamp-icon");
-  if (brightnessValue === 99) {
-    moreButton.disabled = true;
-  } else if (brightnessValue === 1) {
-    lessButton.disabled = true;
-  } else {
-    moreButton.disabled = false;
-    lessButton.disabled = false;
-  }
-  if (
-    event.currentTarget.classList.value === "lamp__settings__brightness-less"
-  ) {
-    brightnessValue -= 1;
-  } else {
-    brightnessValue += 1;
-  }
-  brightnessInfo.textContent = brightnessValue + "%";
-  lightIcon.style.opacity = `0.${brightnessValue}`;
-}
-
-function changeConditionTemp(event) {
-  const tempInfo = document.querySelector(".condition__value-temp");
-  let tempValue = parseInt(tempInfo.textContent);
-  if (
-    event.currentTarget.classList.value === "condition__controls-button-less"
-  ) {
-    tempValue -= 1;
-  } else {
-    tempValue += 1;
-  }
-  tempInfo.textContent = tempValue + "°C";
-}
-
-function setConditionMode(event) {
-  let selectedMode;
-  const modes = document.querySelectorAll(".condition-mode");
-  if (!event) {
-    selectedMode = "auto";
-  } else {
-    selectedMode = event.currentTarget.dataset.mode;
-  }
-  for (let i = 0; i < modes.length; i++) {
-    if (modes[i].dataset.mode === selectedMode) {
-      modes[i].classList.add("condition-mode--selected");
-    } else {
-      modes[i].classList.remove("condition-mode--selected");
-    }
-  }
-}
-
-function makeCoffee(event) {
-  switchDevicePower();
-  event.target.textContent = "In progress";
-  setTimeout(() => {
-    alert("Your drink is done!");
-    event.target.textContent = "Start";
-    switchDevicePower();
-  }, 120000);
-}
-
-function setPowerDefault(event) {
-  let selectedPower;
-  const items = document.querySelectorAll(".default-device__power");
-  if (!event) {
-    selectedPower = 1;
-  } else {
-    selectedPower = +event.target.textContent;
-  }
-  for (let i = 0; i < items.length; i++) {
-    if (+items[i].textContent === selectedPower) {
-      items[i].classList.add("default-device__power--selected");
-    } else {
-      items[i].classList.remove("default-device__power--selected");
-    }
-  }
-}
-
-function setSelectedProrgamm(event) {
-  const channels = document.querySelectorAll(".tv__programms__list-item");
-  const programms = devices.find(
-    (device) => device.title === localStorage.selectedDevice
-  ).functions.programms;
-  if (!event) {
-    selectedProgramm = programms[0];
-  } else if (event.target.dataset.channel) {
-    selectedProgramm = event.target.dataset.channel;
-  } else {
-    let index = programms.indexOf(selectedProgramm);
-    if (event.currentTarget.dataset.programm === "next") {
-      if (index >= programms.length - 1) {
-        index = -1;
-      }
-      selectedProgramm = programms[index + 1];
-    } else {
-      if (index < 1) {
-        index = programms.length;
-      }
-      selectedProgramm = programms[index - 1];
-    }
-  }
-  for (let i = 0; i < channels.length; i++) {
-    if (channels[i].dataset.channel === selectedProgramm) {
-      channels[i].classList.add("tv__programms__list-item--selected");
-    } else {
-      channels[i].classList.remove("tv__programms__list-item--selected");
-    }
-  }
-}
-
-function changeTvVolume(event) {
-  let volumeEl = document.querySelector(".tv__settings__volume-bar-value");
-  let volumeValue = parseInt(volumeEl.textContent);
-  const lessButton = document.querySelector(
-    ".tv__settings__volume-bar-button[data-volume='less'"
-  );
-  const moreButton = document.querySelector(
-    ".tv__settings__volume-bar-button[data-volume='more'"
-  );
-  if (volumeValue === 99) {
-    moreButton.disabled = true;
-  } else if (volumeValue === 1) {
-    lessButton.disabled = true;
-  } else {
-    moreButton.disabled = false;
-    lessButton.disabled = false;
-  }
-  if (event.currentTarget.dataset.volume === "more") {
-    volumeValue += 1;
-  } else {
-    volumeValue -= 1;
-  }
-  volumeEl.textContent = volumeValue + "%";
-}
-
-function changeOvenMode(event) {
-  let selectedMode;
-  const modeElements = document.querySelectorAll(".mode-item");
-  selectedMode = event.currentTarget.dataset.mode;
-  for (let i = 0; i < modeElements.length; i++) {
-    if (modeElements[i].dataset.mode === selectedMode) {
-      modeElements[i].classList.add("mode-item--selected");
-    } else {
-      modeElements[i].classList.remove("mode-item--selected");
-    }
-  }
-}
-
-function changeOvenTemp(event) {
-  const ovenTempEl = document.querySelector(".oven__settings__temp-value");
-  const lessButton = document.querySelector(
-    ".oven__settings__temp-btn[data-control='less'"
-  );
-  const moreButton = document.querySelector(
-    ".oven__settings__temp-btn[data-control='more'"
-  );
-  let ovenTempValue = parseInt(ovenTempEl.textContent);
-  if (ovenTempValue === 1) {
-    lessButton.disabled = true;
-  } else if (ovenTempValue === 319) {
-    moreButton.disabled = true;
-  } else {
-    lessButton.disabled = false;
-    moreButton.disabled = false;
-  }
-  if (event.currentTarget.dataset.control === "less") {
-    ovenTempValue -= 1;
-  } else {
-    ovenTempValue += 1;
-  }
-  ovenTempEl.textContent = ovenTempValue + "°C";
-}
-
-function toggleOvenLight(event) {
-  rooms
-    .find((room) => room.title === localStorage.selectedRoom)
-    .devices.find(
-      (device) => device.title === localStorage.selectedDevice
-    ).functions.light = !rooms
-    .find((room) => room.title === localStorage.selectedRoom)
-    .devices.find((device) => device.title === localStorage.selectedDevice)
-    .functions.light;
-  if (
-    rooms
-      .find((room) => room.title === localStorage.selectedRoom)
-      .devices.find((device) => device.title === localStorage.selectedDevice)
-      .functions.light
-  ) {
-    event.currentTarget.classList.add("oven__settings__light-button--active");
-  } else {
-    event.currentTarget.classList.remove(
-      "oven__settings__light-button--active"
-    );
-  }
-  localStorage.setItem("rooms", JSON.stringify(rooms));
-}
-
-function changeLoudVolume(event) {
-  const lessButton = document.querySelector(
-    ".loud__volume-button[data-volume='less'"
-  );
-  const moreButton = document.querySelector(
-    ".loud__volume-button[data-volume='more'"
-  );
-  const volumeValueEl = document.querySelector(".loud__volume-value");
-  let volumeValue = +volumeValueEl.textContent;
-  if (volumeValue === 99) {
-    moreButton.disabled = true;
-  } else if (volumeValue === 1) {
-    lessButton.disabled = true;
-  } else {
-    moreButton.disabled = false;
-    lessButton.disabled = false;
-  }
-  if (event.currentTarget.dataset.volume === "less") {
-    volumeValue -= 1;
-  } else {
-    volumeValue += 1;
-  }
-  volumeValueEl.textContent = volumeValue;
-}
-
-function changeCookerMode(event) {
-  let selectedMode;
-  const modes = document.querySelectorAll(".cooker__list-item");
-  selectedMode = event.currentTarget.dataset.mode;
-  for (let i = 0; i < modes.length; i++) {
-    if (modes[i].dataset.mode === selectedMode) {
-      modes[i].classList.add("cooker__list-item--selected");
-    } else {
-      modes[i].classList.remove("cooker__list-item--selected");
-    }
-  }
-}
-
-function changeWashingMode(event) {
-  let selectedMode;
-  const modes = document.querySelectorAll(".washing__list-item ");
-  const pointer = document.querySelector(".washing__pointer");
-  selectedMode = event.currentTarget.dataset.mode;
-  switch (selectedMode) {
-    case "quick-wash":
-      pointer.style.transform = "rotate(30deg)";
-      break;
-    case "sport":
-      pointer.style.transform = "rotate(130deg)";
-      break;
-    case "cotton":
-      pointer.style.transform = "rotate(180deg)";
-      break;
-    case "soft-wash":
-      pointer.style.transform = "rotate(220deg)";
-      break;
-    case "shoes":
-      pointer.style.transform = "rotate(330deg)";
-      break;
-
-    default:
-      pointer.style.transform = "rotate(0deg)";
-      break;
-  }
-  for (let i = 0; i < modes.length; i++) {
-    if (modes[i].dataset.mode === selectedMode) {
-      modes[i].classList.add("washing__list-item--selected");
-    } else {
-      modes[i].classList.remove("washing__list-item--selected");
-    }
-  }
-}
-
-function changeDoorStatus(event) {
-  const input = document.querySelector(".door__password-input");
-  let functions = devices.find(
-    (device) => device.title === localStorage.selectedDevice
-  ).functions;
-  let { password, isOpen } = functions;
-  if (input.value !== password) {
-    alert("Incorrect password!");
-    input.value = "";
-  } else {
-    rooms
-      .find((room) => room.title === localStorage.selectedRoom)
-      .devices.find(
-        (device) => device.title === localStorage.selectedDevice
-      ).functions.isOpen = !rooms
-      .find((room) => room.title === localStorage.selectedRoom)
-      .devices.find((device) => device.title === localStorage.selectedDevice)
-      .functions.isOpen;
-    localStorage.setItem("rooms", JSON.stringify(rooms));
-    event.target.textContent === "Open the door"
-      ? (event.target.textContent = "Close the door")
-      : (event.target.textContent = "Open the door");
-    input.value = "";
-  }
-}
-
-function changeMicrowavePower(event) {
-  const lessButton = document.querySelector(
-    ".microwave__power-btn[data-power='less'"
-  );
-  const moreButton = document.querySelector(
-    ".microwave__power-btn[data-power='more'"
-  );
-  const valueEl = document.querySelector(".microwave__power-value");
-  let value = parseInt(valueEl.textContent);
-  if (value === 899) {
-    moreButton.disabled = true;
-  } else if (value === 91) {
-    lessButton.disabled = true;
-  } else {
-    moreButton.disabled = false;
-    lessButton.disabled = false;
-  }
-  if (event.currentTarget.dataset.power === "less") {
-    value -= 1;
-  } else {
-    value += 1;
-  }
-  valueEl.textContent = value + " W";
-}
-
-function changeMicrowaveTime(event) {
-  const lessButton = document.querySelector(
-    ".microwave__time-btn[data-time='less'"
-  );
-  const moreButton = document.querySelector(
-    ".microwave__time-btn[data-time='more'"
-  );
-  const valueEl = document.querySelector(".microwave__time-value");
-  let value = parseInt(valueEl.textContent);
-  if (value === 59) {
-    moreButton.disabled = true;
-  } else if (value === 1) {
-    lessButton.disabled = true;
-  } else {
-    moreButton.disabled = false;
-    lessButton.disabled = false;
-  }
-  if (event.currentTarget.dataset.time === "less") {
-    value -= 1;
-  } else {
-    value += 1;
-  }
-  valueEl.textContent = value + " min";
-}
