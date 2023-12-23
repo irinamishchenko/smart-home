@@ -1,3 +1,5 @@
+import { Room } from "./classes.js";
+
 let rooms = [];
 
 const makeRoomBtn = document.querySelector(".rooms__btn-add-room");
@@ -26,7 +28,6 @@ const menuItems = document.querySelectorAll(".footer__nav--item");
 localStorage.setItem("menuItem", "rooms");
 
 function changeMenuItem() {
-  console.log("Hi");
   for (let i = 0; i < menuItems.length; i++) {
     if (menuItems[i].dataset.menu === localStorage.menuItem) {
       menuItems[i].classList.add("footer__nav--item--active");
@@ -46,13 +47,13 @@ function closeAddRoomModal() {
   addRoomModalWrapper.style.display = "none";
 }
 
-class Room {
-  constructor(title, image, devices) {
-    this.title = title;
-    this.image = image;
-    this.devices = devices;
-  }
-}
+// class Room {
+//   constructor(title, image, devices) {
+//     this.title = title;
+//     this.image = image;
+//     this.devices = devices;
+//   }
+// }
 
 function setRoom() {
   try {
@@ -99,13 +100,14 @@ function setImage(value) {
       return "../images/rooms/bedroom.jpg";
       break;
     case "children's room":
-      return "../images/rooms/children-room.jpg";
+      return "../images/rooms/childrens-room.jpg";
       break;
     case "office":
       return "../images/rooms/office.jpg";
       break;
     default:
-      return "../images/rooms/other-room.jpg";
+      const randomNumber = Math.floor(Math.random() * (6 - 1) + 1);
+      return `../images/rooms/other-room${randomNumber}.jpg`;
       break;
   }
 }
