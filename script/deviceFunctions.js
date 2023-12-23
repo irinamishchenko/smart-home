@@ -1,3 +1,8 @@
+const rooms = JSON.parse(localStorage.rooms);
+const devices = rooms.find(
+  (room) => room.title === localStorage.selectedRoom
+).devices;
+
 function changeValue(
   lessButton,
   moreButton,
@@ -180,11 +185,28 @@ function changeWashingMode(event) {
   }
 }
 
+function checkPasswordPresence() {
+  let functions = devices.find(
+    (device) => device.title === localStorage.selectedDevice
+  ).functions;
+  let { password } = functions;
+  if (!password) {
+    password = prompt("Set password for your door");
+  }
+  rooms
+    .find((room) => room.title === localStorage.selectedRoom)
+    .devices.find(
+      (device) => device.title === localStorage.selectedDevice
+    ).functions.password = password;
+  localStorage.setItem("rooms", JSON.stringify(rooms));
+}
+
 function changeDoorStatus(event) {
   const input = document.querySelector(".door__password-input");
   let functions = devices.find(
     (device) => device.title === localStorage.selectedDevice
   ).functions;
+  console.log(functions);
   let { password, isOpen } = functions;
   if (input.value !== password) {
     alert("Incorrect password!");
@@ -216,4 +238,5 @@ export {
   toggleOvenLight,
   changeWashingMode,
   changeDoorStatus,
+  checkPasswordPresence,
 };

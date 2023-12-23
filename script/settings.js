@@ -9,6 +9,7 @@ import {
   toggleOvenLight,
   changeWashingMode,
   changeDoorStatus,
+  checkPasswordPresence,
 } from "./deviceFunctions.js";
 import { Device } from "./classes.js";
 
@@ -49,6 +50,7 @@ switcher.addEventListener("click", switchDevicePower);
 // }
 
 const rooms = JSON.parse(localStorage.rooms);
+console.log(rooms);
 
 // class Device {
 //   battery = Math.floor(Math.random() * 100) + 1;
@@ -150,7 +152,7 @@ function setDeviceFunctions(device) {
       };
       break;
     case "smart-door":
-      functions = { password: "1234", isOpen: false };
+      functions = { password: null, isOpen: false };
       break;
     case "oven":
       functions = {
@@ -208,7 +210,7 @@ function changeChargePercentage() {
 }
 
 changeTitle();
-changeChargePercentage();
+// changeChargePercentage();
 
 function showDevices() {
   let devicesListItems = ``;
@@ -514,6 +516,9 @@ function setDeviceSettingsMarkup() {
         functions.isOpen ? "Close" : "Open"
       } the door</button></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
+      document
+        .querySelector(".door__password-input")
+        .addEventListener("click", checkPasswordPresence);
       document
         .querySelector(".door__password-button")
         .addEventListener("click", changeDoorStatus);
