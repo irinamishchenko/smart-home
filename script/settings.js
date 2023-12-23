@@ -1,3 +1,4 @@
+import { changeMenuItem } from "./footer.js";
 import {
   changeValue,
   changeMode,
@@ -9,6 +10,7 @@ import {
   changeWashingMode,
   changeDoorStatus,
 } from "./deviceFunctions.js";
+import { Device } from "./classes.js";
 
 const devicesList = document.querySelector(".settings__header__devices-list");
 const title = document.querySelector(".settings__header--title");
@@ -20,18 +22,18 @@ const main = document.querySelector(".settings__main");
 
 // let lampColorsControls;
 
-const menuItems = document.querySelectorAll(".footer__nav--item");
+// const menuItems = document.querySelectorAll(".footer__nav--item");
 localStorage.setItem("menuItem", "settings");
 
-function changeMenuItem() {
-  for (let i = 0; i < menuItems.length; i++) {
-    if (menuItems[i].dataset.menu === localStorage.menuItem) {
-      menuItems[i].classList.add("footer__nav--item--active");
-    } else {
-      menuItems[i].classList.remove("footer__nav--item--active");
-    }
-  }
-}
+// function changeMenuItem() {
+//   for (let i = 0; i < menuItems.length; i++) {
+//     if (menuItems[i].dataset.menu === localStorage.menuItem) {
+//       menuItems[i].classList.add("footer__nav--item--active");
+//     } else {
+//       menuItems[i].classList.remove("footer__nav--item--active");
+//     }
+//   }
+// }
 
 changeMenuItem();
 
@@ -48,33 +50,33 @@ switcher.addEventListener("click", switchDevicePower);
 
 const rooms = JSON.parse(localStorage.rooms);
 
-class Device {
-  battery = Math.floor(Math.random() * 100) + 1;
-  timer;
-  functions = {};
-  constructor(isOn, title, imageUrl) {
-    this.isOn = isOn;
-    this.title = title;
-    this.imageUrl = imageUrl;
-  }
-  changeBattery() {
-    if (this.timer > 0) {
-      clearInterval(this.timer);
-      this.timer = "undefined";
-    } else {
-      this.timer = setInterval(() => {
-        if (this.battery === 1) {
-          clearInterval(this.timer);
-        }
-        this.battery -= 1;
-        changeChargePercentage();
-      }, 3600000);
-    }
-  }
-  setFunctions(functions) {
-    this.functions = functions;
-  }
-}
+// class Device {
+//   battery = Math.floor(Math.random() * 100) + 1;
+//   timer;
+//   functions = {};
+//   constructor(isOn, title, imageUrl) {
+//     this.isOn = isOn;
+//     this.title = title;
+//     this.imageUrl = imageUrl;
+//   }
+//   changeBattery() {
+//     if (this.timer > 0) {
+//       clearInterval(this.timer);
+//       this.timer = "undefined";
+//     } else {
+//       this.timer = setInterval(() => {
+//         if (this.battery === 1) {
+//           clearInterval(this.timer);
+//         }
+//         this.battery -= 1;
+//         changeChargePercentage();
+//       }, 3600000);
+//     }
+//   }
+//   setFunctions(functions) {
+//     this.functions = functions;
+//   }
+// }
 
 function setDevices() {
   devices = JSON.parse(localStorage.rooms)

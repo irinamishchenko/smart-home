@@ -1,3 +1,5 @@
+import { changeMenuItem } from "./footer.js";
+
 let rooms = [];
 
 const title = document.querySelector(".devices__header--title");
@@ -13,18 +15,18 @@ const devicesList = document.querySelector("#devices-list");
 addDeviceBtn.addEventListener("click", openAddDeviceModal);
 cancelDeviceBtn.addEventListener("click", closeAddDeviceModal);
 
-const menuItems = document.querySelectorAll(".footer__nav--item");
+// const menuItems = document.querySelectorAll(".footer__nav--item");
 localStorage.setItem("menuItem", "devices");
 
-function changeMenuItem() {
-  for (let i = 0; i < menuItems.length; i++) {
-    if (menuItems[i].dataset.menu === localStorage.menuItem) {
-      menuItems[i].classList.add("footer__nav--item--active");
-    } else {
-      menuItems[i].classList.remove("footer__nav--item--active");
-    }
-  }
-}
+// function changeMenuItem() {
+//   for (let i = 0; i < menuItems.length; i++) {
+//     if (menuItems[i].dataset.menu === localStorage.menuItem) {
+//       menuItems[i].classList.add("footer__nav--item--active");
+//     } else {
+//       menuItems[i].classList.remove("footer__nav--item--active");
+//     }
+//   }
+// }
 
 changeMenuItem();
 

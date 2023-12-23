@@ -1,3 +1,4 @@
+import { changeMenuItem } from "./footer.js";
 import { Room } from "./classes.js";
 
 let rooms = [];
@@ -24,18 +25,18 @@ if (localStorage.rooms && localStorage.rooms.length > 0) {
   showRooms();
 }
 
-const menuItems = document.querySelectorAll(".footer__nav--item");
+// const menuItems = document.querySelectorAll(".footer__nav--item");
 localStorage.setItem("menuItem", "rooms");
 
-function changeMenuItem() {
-  for (let i = 0; i < menuItems.length; i++) {
-    if (menuItems[i].dataset.menu === localStorage.menuItem) {
-      menuItems[i].classList.add("footer__nav--item--active");
-    } else {
-      menuItems[i].classList.remove("footer__nav--item--active");
-    }
-  }
-}
+// function changeMenuItem() {
+//   for (let i = 0; i < menuItems.length; i++) {
+//     if (menuItems[i].dataset.menu === localStorage.menuItem) {
+//       menuItems[i].classList.add("footer__nav--item--active");
+//     } else {
+//       menuItems[i].classList.remove("footer__nav--item--active");
+//     }
+//   }
+// }
 
 changeMenuItem();
 
