@@ -1,5 +1,4 @@
 .active-devices__title {
-  /* display: inline-block; */
   font-family: "Open Sans";
   font-size: 24px;
   font-style: normal;
@@ -45,8 +44,6 @@
   width: 42px;
   height: 17px;
   border-radius: 69.231px;
-  /* background: linear-gradient(#0051e3 0%, #0adff4 100%); */
-  /* background: linear-gradient(180deg, #bdbdbd 0%, #dfe0e4 100%); */
   border: 1.385px solid #fff;
   position: absolute;
   background: linear-gradient(rgb(0, 81, 227) 0%, rgb(10, 223, 244) 100%);

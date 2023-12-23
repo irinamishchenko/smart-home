@@ -108,15 +108,28 @@ function showRooms() {
       rooms[i].title
     }" class="rooms__list-item__button"><div class="rooms__list-item__button--icon-wrapper"><svg class="rooms__list-item__button--icon">
     <use xlink:href="../images/sprite.svg#plus"></use>
-  </svg></div>Add device</a></li>`;
+  </svg></div>Add device</a><button class="rooms__list-item__delete-button"><svg class="rooms__list-item__delete-button-icon">
+  <use xlink:href="../images/sprite.svg#plus"></use>
+</svg></button></li>`;
     roomsListItems += item;
   }
   roomsList.innerHTML = roomsListItems;
   document
     .querySelectorAll(".rooms__list-item__button")
     .forEach((el) => el.addEventListener("click", setRoomName));
+  document
+    .querySelectorAll(".rooms__list-item__delete-button")
+    .forEach((button) => button.addEventListener("click", deleteRoom));
 }
 
 function setRoomName() {
   localStorage.setItem("selectedRoom", this.dataset.room);
+}
+
+function deleteRoom(event) {
+  const selectedRoom =
+    event.currentTarget.parentNode.firstChild.firstChild.textContent;
+  rooms = rooms.filter((room) => room.title !== selectedRoom);
+  localStorage.setItem("rooms", JSON.stringify(rooms));
+  showRooms();
 }
