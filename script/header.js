@@ -33,6 +33,7 @@ function createUsersList(users) {
   document
     .querySelectorAll(".header__users__list-item")
     .forEach((user) => user.addEventListener("click", selectUser));
+  selectUser();
 }
 
 function createUserItem(user) {
@@ -77,7 +78,11 @@ function selectUser(event) {
 function greetUser() {
   const name = localStorage.selectedUser;
   const greetingElement = document.querySelector(".header__greeting");
-  greetingElement.textContent = `Hello, ${name}!`;
+  if (name !== "undefined") {
+    greetingElement.textContent = `Hello, ${name}!`;
+  } else {
+    greetingElement.textContent = `Hello!`;
+  }
 }
 
 selectUser();
