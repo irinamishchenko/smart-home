@@ -23,6 +23,11 @@
 
 .footer__nav--item {
   width: 75px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 3px solid transparent;
 }
 
 .footer__nav--item-link {
@@ -44,4 +49,17 @@
   height: 24px;
   fill: #fff;
   stroke: #fff;
+}
+
+.footer__nav--item--active {
+  border-color: #254bec;
+}
+
+.footer__nav--item--active .footer__nav--item-link {
+  color: #254bec;
+}
+
+.footer__nav--item--active .footer__nav--item-icon {
+  fill: #254bec;
+  stroke: #254bec;
 }

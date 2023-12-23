@@ -216,7 +216,7 @@ main {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  z-index: 20;
+  z-index: 8;
 }
 
 .rooms__list-item__delete-button-icon {

@@ -13,6 +13,21 @@ const devicesList = document.querySelector("#devices-list");
 addDeviceBtn.addEventListener("click", openAddDeviceModal);
 cancelDeviceBtn.addEventListener("click", closeAddDeviceModal);
 
+const menuItems = document.querySelectorAll(".footer__nav--item");
+localStorage.setItem("menuItem", "devices");
+
+function changeMenuItem() {
+  for (let i = 0; i < menuItems.length; i++) {
+    if (menuItems[i].dataset.menu === localStorage.menuItem) {
+      menuItems[i].classList.add("footer__nav--item--active");
+    } else {
+      menuItems[i].classList.remove("footer__nav--item--active");
+    }
+  }
+}
+
+changeMenuItem();
+
 if (JSON.parse(localStorage.rooms).length > 0) {
   // changeTitle();
   rooms = JSON.parse(localStorage.rooms);
@@ -145,7 +160,7 @@ function showDevices() {
   }
   for (let i = 0; i < devicesForRoom.length; i++) {
     const title = setTitle(devicesForRoom[i].title);
-    const newDevice = `<li class="devices__list-item"><div class="devices__list-item__image-wrapper"><img class="devices__list-item__image" src="${devicesForRoom[i].imageUrl}" alt="${title}" /></div><h2 class="devices__list-item__title">${title}</h2><div data-device="${title}" class="devices__list-item__buttons"><a href="../pages/settings.html" class="devices__list-item__button-details">Details</a><button class="devices__list-item__button-delete">Delete</button></div></li>`;
+    const newDevice = `<li class="devices__list-item"><div class="devices__list-item__image-wrapper"><img class="devices__list-item__image" src="${devicesForRoom[i].imageUrl}" alt="${title}" /></div><h2 class="devices__list-item__title">${title}</h2><div data-device="${title}" class="devices__list-item__buttons"><a href="./settings.html" class="devices__list-item__button-details">Details</a><button class="devices__list-item__button-delete">Delete</button></div></li>`;
     devicesListItems += newDevice;
   }
   devicesList.innerHTML = devicesListItems;

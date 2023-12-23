@@ -7,7 +7,21 @@
     <title>Smart Home | Rooms</title>
   </head>
   <body>
-    <header class="header"></header>
+    <header class="header">
+      <div class="header__users">
+        <ul class="header__users__list"></ul>
+        <button class="header__add-user-btn">
+          <svg class="header__add-user-btn-icon">
+            <use xlink:href="../images/sprite.svg#plus"></use>
+          </svg>
+        </button>
+        <h1 class="header__greeting"></h1>
+        <div class="header-container">
+          <div class="header__weather"></div>
+          <div class="header__date"></div>
+        </div>
+      </div>
+    </header>
     <main class="rooms__main rooms">
       <section class="rooms__header">
         <h2 class="rooms--title">Add your first room!</h2>
@@ -38,34 +52,34 @@
     <footer class="footer">
       <nav>
         <ul class="footer__nav">
-          <li class="footer__nav--item">
-            <a class="footer__nav--item-link" href="/">
+          <li class="footer__nav--item" data-menu="home">
+            <a class="footer__nav--item-link" href="./index.html">
               <svg class="footer__nav--item-icon">
-                <use xlink:href="../images/sprite.svg#home"></use>
+                <use xlink:href="images/sprite.svg#home"></use>
               </svg>
               Home
             </a>
           </li>
-          <li class="footer__nav--item">
-            <a class="footer__nav--item-link" href="pages/rooms.html">
+          <li class="footer__nav--item" data-menu="rooms">
+            <a class="footer__nav--item-link" href="./rooms.html">
               <svg class="footer__nav--item-icon">
-                <use xlink:href="../images/sprite.svg#rooms"></use>
+                <use xlink:href="images/sprite.svg#rooms"></use>
               </svg>
               Rooms
             </a>
           </li>
-          <li class="footer__nav--item">
-            <a class="footer__nav--item-link" href="devices.html">
+          <li class="footer__nav--item" data-menu="devices">
+            <a class="footer__nav--item-link" href="./devices.html">
               <svg class="footer__nav--item-icon">
-                <use xlink:href="../images/sprite.svg#devices"></use>
+                <use xlink:href="images/sprite.svg#devices"></use>
               </svg>
               Devices
             </a>
           </li>
-          <li class="footer__nav--item">
-            <a class="footer__nav--item-link" href="settings.html">
+          <li class="footer__nav--item" data-menu="settings">
+            <a class="footer__nav--item-link" href="./settings.html">
               <svg class="footer__nav--item-icon">
-                <use xlink:href="../images/sprite.svg#settings"></use>
+                <use xlink:href="images/sprite.svg#settings"></use>
               </svg>
               Settings
             </a>
@@ -73,6 +87,7 @@
         </ul>
       </nav>
     </footer>
-    <script src="./../script/rooms.js"></script>
+    <script src="./script/rooms.js"></script>
+    <script src="./script/header.js"></script>
   </body>
 </html>

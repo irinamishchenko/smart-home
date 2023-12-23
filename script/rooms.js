@@ -22,6 +22,22 @@ if (localStorage.rooms && localStorage.rooms.length > 0) {
   showRooms();
 }
 
+const menuItems = document.querySelectorAll(".footer__nav--item");
+localStorage.setItem("menuItem", "rooms");
+
+function changeMenuItem() {
+  console.log("Hi");
+  for (let i = 0; i < menuItems.length; i++) {
+    if (menuItems[i].dataset.menu === localStorage.menuItem) {
+      menuItems[i].classList.add("footer__nav--item--active");
+    } else {
+      menuItems[i].classList.remove("footer__nav--item--active");
+    }
+  }
+}
+
+changeMenuItem();
+
 function openAddRoomModal() {
   addRoomModalWrapper.style.display = "block";
 }
@@ -104,7 +120,7 @@ function showRooms() {
       devicesCount === 1 ? "device" : "devices"
     }</p></div><img class="rooms__list-item--image" src="${
       rooms[i].image
-    }" alt="${rooms[i].title}" /><a href="../pages/devices.html" data-room="${
+    }" alt="${rooms[i].title}" /><a href="./devices.html" data-room="${
       rooms[i].title
     }" class="rooms__list-item__button"><div class="rooms__list-item__button--icon-wrapper"><svg class="rooms__list-item__button--icon">
     <use xlink:href="../images/sprite.svg#plus"></use>
