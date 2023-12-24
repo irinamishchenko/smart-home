@@ -99,6 +99,7 @@ function setSelectedProrgamm(event) {
   const programms = devices.find(
     (device) => device.title === localStorage.selectedDevice
   ).functions.programms;
+  let selectedProgramm;
   if (!event) {
     selectedProgramm = programms[0];
   } else if (event.target.dataset.channel) {

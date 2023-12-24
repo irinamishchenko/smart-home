@@ -1,12 +1,11 @@
-.active-devices__title {
-  font-family: "Open Sans";
+/* .active-devices__title {
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 36px;
-  color: #ffffff;
+  color: var(--text-color-light);
   margin-bottom: 20px;
-}
+} */
 
 .active-devices__list {
   display: flex;
@@ -15,8 +14,8 @@
 }
 
 .active-devices__list-item {
-  background: linear-gradient(180deg, #dfe0e4 0%, #fefefe 100%);
-  border: 2px solid #fff;
+  background: var(--button-gradient);
+  border: 2px solid var(--text-color-light);
   border-radius: 6px;
   height: 55px;
   display: flex;
@@ -26,12 +25,12 @@
 }
 
 .active-devices__list-item-title {
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 24px;
-  color: #424242;
+  color: var(--text-color-dark);
 }
 
 .active-devices__list-item__switcher--active {
@@ -44,9 +43,9 @@
   width: 42px;
   height: 17px;
   border-radius: 69.231px;
-  border: 1.385px solid #fff;
+  border: 1.385px solid var(--text-color-light);
   position: absolute;
-  background: linear-gradient(rgb(0, 81, 227) 0%, rgb(10, 223, 244) 100%);
+  background: var(--button-active-gradient);
   border-color: transparent;
 }
 
@@ -55,7 +54,7 @@
   height: 23.231px;
   border-radius: 50%;
   border: 1px solid hsl(220, 2%, 72%);
-  background: linear-gradient(180deg, #dfe0e4 0%, #fefefe 100%);
+  background: var(--button-gradient);
   position: absolute;
   top: -15%;
   right: 0;

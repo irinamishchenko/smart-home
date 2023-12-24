@@ -1,8 +1,8 @@
 .footer {
   height: 70px;
   padding: 0 15px;
-  background-color: #03091f;
-  border-top: 1px solid #e0e3e7;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--input);
   position: fixed;
   bottom: 0;
   z-index: 11;
@@ -15,7 +15,6 @@
 
 .footer__nav {
   height: 100%;
-  list-style: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,9 +34,7 @@
   flex-direction: column;
   align-items: center;
   gap: 7px;
-  text-decoration: none;
-  color: #fff;
-  font-family: "Open Sans";
+  color: var(--text-color-light);
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -47,19 +44,19 @@
 .footer__nav--item-icon {
   width: 24px;
   height: 24px;
-  fill: #fff;
-  stroke: #fff;
+  fill: var(--text-color-light);
+  stroke: var(--text-color-light);
 }
 
 .footer__nav--item--active {
-  border-color: #254bec;
+  border-color: var(--button-color);
 }
 
 .footer__nav--item--active .footer__nav--item-link {
-  color: #254bec;
+  color: var(--button-color);
 }
 
 .footer__nav--item--active .footer__nav--item-icon {
-  fill: #254bec;
-  stroke: #254bec;
+  fill: var(--button-color);
+  stroke: var(--button-color);
 }

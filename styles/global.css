@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dangrek&family=Leckerli+One&family=Open+Sans:wght@400;600;700&family=Source+Sans+3&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +8,89 @@
 
 body {
   background-color: #03091f;
+  font-family: "Open Sans";
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+:root {
+  --background-color: #03091f;
+  --text-color-light: #fff;
+  --text-color-dark: #424242;
+  --button-delete-color: #ff0000;
+  --button-color: #254bec;
+  --button-light-color: #ced4ed;
+  --icon-color: #242127;
+  --header-color: #1f75ff;
+  --settings-value-color: #dfe0e4;
+  --button-gradient: linear-gradient(180deg, #dfe0e4 0%, #fefefe 100%);
+  --button-active-gradient: linear-gradient(180deg, #0051e3 0%, #0adff4 100%);
+  --users-background-color: #f5d046;
+  --input: #e0e3e7;
+  --rooms-item-button: #78b9eb;
+  --devices-modal: #e7edf4;
+  --subtitle: #ababab;
+}
+
+.title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  color: var(--text-color-light);
+  margin-bottom: 20px;
+}
+
+.settings-subtitle {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--subtitle);
+  margin-bottom: 20px;
+}
+
+.control-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: 2px solid var(--settings-value-color);
+  background-color: var(--text-color-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-button-icon {
+  width: 90%;
+  height: 90%;
+  stroke: var(--text-color-dark);
+}
+
+.control-button:hover {
+  background: var(--button-active-gradient);
+}
+
+.control-button:hover .control-button-icon {
+  stroke: var(--text-color-light);
+}
+
+.modes-list {
+  background-color: var(--text-color-light);
+  border: 2px solid var(--settings-value-color);
+  border-radius: 10px;
+  /* font-family: "Open Sans"; */
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--text-color-dark);
+  padding: 5px 20px;
+  margin-bottom: 5px;
 }

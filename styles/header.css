@@ -1,6 +1,7 @@
 .header {
   height: 291px;
-  background: #1f75ff url(./../images/background-header.png) no-repeat 80% 80%;
+  background: var(--header-color) url(./../images/background-header.png)
+    no-repeat 80% 80%;
   background-size: 20%;
   border-radius: 0 0 5% 5%;
   margin-bottom: 30px;
@@ -9,15 +10,11 @@
 }
 
 .header__greeting {
-  font-family: "Open Sans";
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  color: #fff;
-}
-
-.header__users {
+  color: var(--text-color-light);
 }
 
 .header__users__list {
@@ -36,12 +33,12 @@
 .header__add-user-btn {
   width: 40px;
   height: 40px;
-  background-color: #f5d046;
+  background-color: var(--users-background-color);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #424242;
+  border: 2px solid var(--text-color-dark);
 }
 
 .header__users__list-item__image {
@@ -49,21 +46,20 @@
 }
 
 .header__users__list-item__name {
-  font-family: "Open Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  color: #424242;
+  color: var(--text-color-dark);
 }
 
 .header__users__list-item--selected .header__users__list-item__image-wrapper {
-  background-color: #fff;
-  border-color: #254bec;
+  background-color: var(--text-color-light);
+  border-color: var(--button-color);
 }
 
 .header__users__list-item--selected .header__users__list-item__name {
-  color: #fff;
+  color: var(--text-color-light);
 }
 
 .header__add-user-btn {
@@ -72,7 +68,7 @@
 }
 
 .header__add-user-btn-icon {
-  stroke: #424242;
+  stroke: var(--text-color-dark);
   width: 90%;
   height: 90%;
 }
@@ -99,7 +95,6 @@
 
 .header__weather-temp,
 .header__date-value {
-  font-family: "Open Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

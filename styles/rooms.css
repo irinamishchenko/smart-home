@@ -1,22 +1,9 @@
-@import url(header.css);
-
 main {
   padding: 0 15px;
 }
 
 .rooms__header {
   margin-bottom: 30px;
-}
-
-.rooms--title {
-  display: inline-block;
-  font-family: "Open Sans";
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 36px;
-  color: #ffffff;
-  margin-bottom: 20px;
 }
 
 .rooms__btn-add-room {
@@ -28,14 +15,13 @@ main {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: "Open Sans";
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
 }
 
 .rooms__btn-add-room--icon {
-  stroke: #242127;
+  stroke: var(--icon-color);
   width: 24px;
   height: 24px;
 }
@@ -59,7 +45,7 @@ main {
   width: 95%;
   max-width: 600px;
   height: 250px;
-  background-color: #fff;
+  background-color: var(--text-color-light);
   border-radius: 6px;
   padding: 24px;
   position: fixed;
@@ -72,18 +58,17 @@ main {
 }
 
 .rooms__modal--title {
-  font-family: "Open Sans";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  color: #424242;
+  color: var(--text-color-dark);
 }
 
 .rooms__modal--input {
   width: 80%;
   border: none;
-  border-bottom: 1px solid #e0e3e7;
+  border-bottom: 1px solid var(--input);
   outline: none;
   padding: 5px;
 }
@@ -99,9 +84,8 @@ main {
   width: 112px;
   height: 40px;
   border-radius: 8px;
-  border: 1px solid #e0e3e7;
+  border: 1px solid var(--input);
   background-color: transparent;
-  font-family: "Open Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -109,13 +93,12 @@ main {
 }
 
 .rooms__modal__buttons button:hover {
-  background-color: #254bec;
+  background-color: var(--button-color);
   border: none;
-  color: #fff;
+  color: var(--text-color-light);
 }
 
 .rooms__list {
-  list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,14 +120,12 @@ main {
   bottom: 0;
   right: 0;
   z-index: 2;
-  font-family: "Open Sans";
   font-style: normal;
-  color: #fff;
+  color: var(--text-color-light);
 }
 
 .rooms__list-item__header-title {
   font-size: 35px;
-
   font-weight: 700;
   line-height: 28px;
   margin-bottom: 10px;
@@ -164,7 +145,6 @@ main {
 }
 
 .rooms__list-item__button {
-  text-decoration: none;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -179,12 +159,11 @@ main {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  font-family: "Open Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  color: #fff;
+  color: var(--text-color-light);
 }
 
 .rooms__list-item__button--icon-wrapper {
@@ -193,13 +172,13 @@ main {
   justify-content: center;
   align-items: center;
   padding: 3px;
-  background-color: #78b9eb;
+  background-color: var(--rooms-item-button);
 }
 
 .rooms__list-item__button--icon {
   width: 24px;
   height: 24px;
-  stroke: #fff;
+  stroke: var(--text-color-light);
 }
 
 .rooms__list-item__delete-button {
@@ -210,7 +189,7 @@ main {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid var(--text-color-light);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,5 +201,5 @@ main {
 .rooms__list-item__delete-button-icon {
   width: 24px;
   height: 24px;
-  stroke: #fff;
+  stroke: var(--text-color-light);
 }

@@ -6,19 +6,7 @@
   margin-bottom: 20px;
 }
 
-.devices__header--title {
-  display: inline-block;
-  font-family: "Open Sans";
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 36px;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
 .devices__header__list {
-  list-style: none;
   display: flex;
   gap: 16px;
   overflow-x: scroll;
@@ -31,19 +19,18 @@
 
 .devices__header__list-item {
   padding: 6px 12px;
-  background-color: #fff;
+  background-color: var(--text-color-light);
   border-radius: 8px;
-  font-family: "Open Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  color: #242127;
+  color: var(--icon-color);
 }
 
 .devices__header__list-item--selected {
-  background-color: #ced4ed;
-  color: #254bec;
+  background-color: var(--button-light-color);
+  color: var(--button-color);
 }
 
 .devices__add-button {
@@ -55,16 +42,15 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: "Open Sans";
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
   margin-bottom: 30px;
-  color: #242127;
+  color: var(--icon-color);
 }
 
 .devices__add-button-icon {
-  stroke: #242127;
+  stroke: var(--icon-color);
   width: 24px;
   height: 24px;
 }
@@ -88,7 +74,7 @@
   width: 95%;
   max-width: 600px;
   height: 650px;
-  background-color: #e7edf4;
+  background-color: var(--devices-modal);
   border-radius: 6px;
   padding: 24px;
   position: fixed;
@@ -101,17 +87,15 @@
 }
 
 .devices__modal-title {
-  font-family: "Open Sans";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
-  color: #424242;
+  color: var(--text-color-dark);
 }
 
 .devices__list {
   height: 80%;
-  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 7px;
@@ -120,7 +104,7 @@
 
 .devices__list-item {
   padding: 15px 10px;
-  background-color: #fff;
+  background-color: var(--text-color-light);
   height: 200px;
   border-radius: 16px;
   display: flex;
@@ -136,26 +120,21 @@
   align-items: center;
 }
 
-.devices__list-item__image {
-}
-
 .devices__list-item__title {
   text-align: center;
-  font-family: "Open Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  color: #242127;
+  color: var(--icon-color);
 }
 
 .devices__list-item__button {
   width: 70px;
   height: 30px;
   border-radius: 8px;
-  border: 1px solid #e0e3e7;
+  border: 1px solid var(--devices-modal);
   background-color: transparent;
-  font-family: "Open Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -163,18 +142,17 @@
 }
 
 .devices__list-item__button:hover {
-  background-color: #254bec;
+  background-color: var(--button-color);
   border: none;
-  color: #fff;
+  color: var(--text-color-light);
 }
 
 .devices__modal__btn-cancel {
   width: 112px;
   height: 40px;
   border-radius: 8px;
-  border: 1px solid #e0e3e7;
+  border: 1px solid var(--input);
   background-color: transparent;
-  font-family: "Open Sans";
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -182,9 +160,9 @@
 }
 
 .devices__modal__btn-cancel:hover {
-  background-color: #254bec;
+  background-color: var(--button-color);
   border: none;
-  color: #fff;
+  color: var(--text-color-light);
 }
 
 .devices__list-wrapper {
@@ -206,21 +184,19 @@
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid #e0e3e7;
-  font-family: "Open Sans";
+  border: 1px solid var(--input);
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
-  color: #fff;
-  text-decoration: none;
+  color: var(--text-color-light);
   cursor: pointer;
 }
 
 .devices__list-item__button-details {
-  background-color: #254bec;
+  background-color: var(--button-color);
 }
 
 .devices__list-item__button-delete {
-  background-color: rgb(255, 0, 0);
+  background-color: var(--button-delete-color);
 }
