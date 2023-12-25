@@ -253,12 +253,17 @@
 .coffee-drinks {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-content: center;
   gap: 10px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .coffee-drink {
   height: 220px;
-  width: 140px;
+  max-width: 200px;
+  width: 100%;
+  margin: auto;
   background-color: var(--text-color-light);
   border-radius: 16px;
   display: flex;
@@ -345,7 +350,7 @@
 }
 
 .mode-item {
-  height: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -358,10 +363,12 @@
 
 .mode-item__img-wrapper {
   width: 100%;
+  height: 150px;
 }
 
 .mode-item__img {
   width: 100%;
+  height: 100%;
 }
 
 .mode-item-title {
@@ -498,7 +505,7 @@
 }
 
 .cooker__list-item {
-  height: 200px;
+  height: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -516,11 +523,23 @@
 
 .cooker__list-item-img-wrapper {
   width: 100%;
+  height: 150px;
 }
 
 .cooker__list-item-img {
   width: 100%;
+  height: 100%;
 }
+
+/* .mode-item__img-wrapper {
+    width: 100%;
+    height: 150px;
+  }
+  
+  .mode-item__img {
+    width: 100%;
+    height: 100%;
+  } */
 
 .cooker__list-item-title {
   font-size: 18px;
@@ -748,4 +767,16 @@
 .default-device__power--selected {
   background: var(--button-active-gradient);
   color: var(--text-color-light);
+}
+
+@media (min-width: 650px) {
+  .coffee-drinks {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .mode-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .cooker__list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

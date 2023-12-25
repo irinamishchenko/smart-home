@@ -200,3 +200,9 @@
 .devices__list-item__button-delete {
   background-color: var(--button-delete-color);
 }
+
+@media (min-width: 650px) {
+  .devices__list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

@@ -1,16 +1,10 @@
-/* .active-devices__title {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 36px;
-  color: var(--text-color-light);
-  margin-bottom: 20px;
-} */
-
 .active-devices__list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .active-devices__list-item {
@@ -25,7 +19,6 @@
 }
 
 .active-devices__list-item-title {
-  /* font-family: "Open Sans"; */
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

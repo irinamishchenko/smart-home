@@ -45,6 +45,7 @@ ul {
   line-height: 36px;
   color: var(--text-color-light);
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .settings-subtitle {
@@ -85,7 +86,6 @@ ul {
   background-color: var(--text-color-light);
   border: 2px solid var(--settings-value-color);
   border-radius: 10px;
-  /* font-family: "Open Sans"; */
   font-size: 14px;
   font-style: normal;
   font-weight: 600;

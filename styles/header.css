@@ -9,12 +9,22 @@
   position: relative;
 }
 
+/* .header-wrapper {
+  max-width: 1200px;
+  width: 100%;
+} */
+
 .header__greeting {
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
   color: var(--text-color-light);
+}
+
+.header__users {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .header__users__list {

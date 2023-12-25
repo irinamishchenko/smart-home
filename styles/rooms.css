@@ -1,5 +1,8 @@
 main {
   padding: 0 15px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .rooms__header {
@@ -202,4 +205,10 @@ main {
   width: 24px;
   height: 24px;
   stroke: var(--text-color-light);
+}
+
+@media (min-width: 650px) {
+  .rooms__list-item {
+    height: 400px;
+  }
 }
