@@ -1,3 +1,5 @@
+import { switchDevicePower, turnOnDevicePower } from "./settings.js";
+
 const rooms = JSON.parse(localStorage.rooms);
 const devices = rooms.find(
   (room) => room.title === localStorage.selectedRoom
@@ -12,6 +14,8 @@ function changeValue(
   unit,
   data
 ) {
+  console.log(data);
+  turnOnDevicePower();
   let value = parseInt(valueEl.textContent);
   if (value === maxValue) {
     moreButton.disabled = true;
@@ -40,6 +44,7 @@ function changeMode(modes, selectedMode, selectedClass) {
 }
 
 function setSelectedLampColor(event) {
+  turnOnDevicePower();
   let selectedColor;
   const buttons = document.querySelectorAll(".lamp__settings__colors__button");
   if (!event) {
@@ -58,6 +63,7 @@ function setSelectedLampColor(event) {
 }
 
 function changeLampBrightness(event) {
+  turnOnDevicePower();
   const brightnessInfo = document.querySelector(
     ".lamp__settings__brightness-info"
   );
@@ -87,7 +93,7 @@ function changeLampBrightness(event) {
 }
 
 function makeCoffee(event) {
-  //   switchDevicePower();
+  turnOnDevicePower();
   event.target.textContent = "In progress";
   setTimeout(() => {
     alert("Your drink is done!");
@@ -97,6 +103,7 @@ function makeCoffee(event) {
 }
 
 function setSelectedProrgamm(event) {
+  turnOnDevicePower();
   const channels = document.querySelectorAll(".tv__programms__list-item");
   const programms = devices.find(
     (device) => device.title === localStorage.selectedDevice
@@ -107,7 +114,14 @@ function setSelectedProrgamm(event) {
   } else if (event.target.dataset.channel) {
     selectedProgramm = event.target.dataset.channel;
   } else {
-    let index = programms.indexOf(selectedProgramm);
+    let index;
+    for (let i = 0; i < channels.length; i++) {
+      if (
+        channels[i].classList.contains("tv__programms__list-item--selected")
+      ) {
+        index = i;
+      }
+    }
     if (event.currentTarget.dataset.programm === "next") {
       if (index >= programms.length - 1) {
         index = -1;
@@ -154,6 +168,7 @@ function toggleOvenLight(event) {
 }
 
 function changeWashingMode(event) {
+  turnOnDevicePower();
   let selectedMode;
   const modes = document.querySelectorAll(".washing__list-item ");
   const pointer = document.querySelector(".washing__pointer");
@@ -188,26 +203,8 @@ function changeWashingMode(event) {
   }
 }
 
-function checkPasswordPresence() {
-  let functions = rooms
-    .find((room) => room.title === localStorage.selectedRoom)
-    .devices.find(
-      (device) => device.title === localStorage.selectedDevice
-    ).functions;
-  let { password } = functions;
-  let newPassword;
-  if (!password) {
-    newPassword = prompt("Set password for your door");
-    rooms
-      .find((room) => room.title === localStorage.selectedRoom)
-      .devices.find(
-        (device) => device.title === localStorage.selectedDevice
-      ).functions.password = newPassword;
-    localStorage.setItem("rooms", JSON.stringify(rooms));
-  }
-}
-
 function changeDoorStatus(event) {
+  turnOnDevicePower();
   const input = document.querySelector(".door__password-input");
   let functions = rooms
     .find((room) => room.title === localStorage.selectedRoom)
@@ -219,6 +216,7 @@ function changeDoorStatus(event) {
     alert("Incorrect password!");
     input.value = "";
   } else {
+    console.log();
     if (isOpen) {
       rooms
         .find((room) => room.title === localStorage.selectedRoom)
@@ -227,26 +225,13 @@ function changeDoorStatus(event) {
         ).functions.isOpen = false;
       event.target.textContent = "Open the door";
     } else {
-      //   rooms
-      //     .find((room) => room.title === localStorage.selectedRoom)
-      //     .devices.find(
-      //       (device) => device.title === localStorage.selectedDevice
-      //     ).functions.isOpen = true;
       rooms
         .find((room) => room.title === localStorage.selectedRoom)
         .devices.find(
           (device) => device.title === localStorage.selectedDevice
-        ).functions.isOpen = !rooms
-        .find((room) => room.title === localStorage.selectedRoom)
-        .devices.find((device) => device.title === localStorage.selectedDevice)
-        .functions.isOpen;
+        ).functions.isOpen = true;
       event.target.textContent = "Close the door";
     }
-
-    localStorage.setItem("rooms", JSON.stringify(rooms));
-    // event.target.textContent === "Open the door"
-    //   ? (event.target.textContent = "Close the door")
-    //   : (event.target.textContent = "Open the door");
     input.value = "";
   }
 }
@@ -261,5 +246,4 @@ export {
   toggleOvenLight,
   changeWashingMode,
   changeDoorStatus,
-  checkPasswordPresence,
 };
