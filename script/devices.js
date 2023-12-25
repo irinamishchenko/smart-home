@@ -4,7 +4,6 @@ let rooms = [];
 
 const title = document.querySelector(".devices__header--title");
 const roomsList = document.querySelector(".devices__header__list");
-// let roomsListItems = [];
 const addDeviceBtn = document.querySelector(".devices__add-button");
 const addDeviceModalWrapper = document.querySelector(".devices__modal-wrapper");
 const cancelDeviceBtn = document.querySelector(".devices__modal__btn-cancel");
@@ -15,23 +14,11 @@ const devicesList = document.querySelector("#devices-list");
 addDeviceBtn.addEventListener("click", openAddDeviceModal);
 cancelDeviceBtn.addEventListener("click", closeAddDeviceModal);
 
-// const menuItems = document.querySelectorAll(".footer__nav--item");
 localStorage.setItem("menuItem", "devices");
-
-// function changeMenuItem() {
-//   for (let i = 0; i < menuItems.length; i++) {
-//     if (menuItems[i].dataset.menu === localStorage.menuItem) {
-//       menuItems[i].classList.add("footer__nav--item--active");
-//     } else {
-//       menuItems[i].classList.remove("footer__nav--item--active");
-//     }
-//   }
-// }
 
 changeMenuItem();
 
 if (JSON.parse(localStorage.rooms).length > 0) {
-  // changeTitle();
   rooms = JSON.parse(localStorage.rooms);
   showRooms();
 }
@@ -82,34 +69,6 @@ function closeAddDeviceModal() {
   addDeviceModalWrapper.style.display = "none";
 }
 
-// class Device {
-//   isOn = false;
-//   battery = Math.floor(Math.random() * 100) + 1;
-//   //   functions = [];
-//   constructor(title, imageUrl) {
-//     this.title = title;
-//     this.imageUrl = imageUrl;
-//     // this.changeBattery();
-//   }
-//   showTitle() {
-//     return this.title + "!";
-//   }
-//   changeBattery() {
-//     console.log("works");
-//     // let batteryInterval = setInterval(() => {
-//     //   //   if (this.battery === 1) {
-//     //   //     clearInterval(batteryInterval);
-//     //   //   }
-//     //   //   this.battery -= 1;
-//     //   //   console.log(this.battery);
-//     // }, 1000);
-//     // batteryInterval();
-//   }
-//   set functions(functionsArray) {
-//     this.functions = functionsArray;
-//   }
-// }
-
 function addDevice(event) {
   let chosenDevise = event.target.parentNode.children[1].innerText
     .split(" ")
@@ -119,11 +78,7 @@ function addDevice(event) {
     checkDeviceTitle(chosenDevise);
     const imageUrl = setImageUrl(chosenDevise);
     const device = createDevice(chosenDevise, imageUrl);
-    // const device = new Device(chosenDevise, imageUrl);
     console.log(device);
-    // console.log(device.showTitle());
-    // setDeviceFunctions(device);
-    // console.log(device.changeBattery());
     rooms
       .find((room) => room.title === localStorage.selectedRoom)
       .devices.push(device);
@@ -138,19 +93,6 @@ function addDevice(event) {
 function createDevice(title, imageUrl) {
   return { isOn: false, title, imageUrl };
 }
-
-// function setDeviceFunctions(device) {
-//   const functions = [];
-//   console.log(device.title);
-//   switch (device.title) {
-//     case "air-condition":
-//         functions.push("")
-//         break;
-
-//     default:
-//         break;
-//   }
-// }
 
 function showDevices() {
   let devicesListItems = ``;
@@ -224,7 +166,3 @@ function deleteDevice(event) {
   localStorage.setItem("rooms", JSON.stringify(rooms));
   showDevices();
 }
-
-// export default function changeBattery(device) {
-//   console.log(device.showTitle());
-// }

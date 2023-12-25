@@ -21,64 +21,13 @@ const switcherBackground = document.querySelector(".switcher-background");
 const switcherButton = document.querySelector(".switcher-button");
 const main = document.querySelector(".settings__main");
 
-// let lampColorsControls;
-
-// const menuItems = document.querySelectorAll(".footer__nav--item");
 localStorage.setItem("menuItem", "settings");
-
-// function changeMenuItem() {
-//   for (let i = 0; i < menuItems.length; i++) {
-//     if (menuItems[i].dataset.menu === localStorage.menuItem) {
-//       menuItems[i].classList.add("footer__nav--item--active");
-//     } else {
-//       menuItems[i].classList.remove("footer__nav--item--active");
-//     }
-//   }
-// }
 
 changeMenuItem();
 
 switcher.addEventListener("click", switchDevicePower);
-// let selectedProgramm;
-
-// let chosenDevice;
-
-// function setChosenDevice() {
-//   chosenDevice = JSON.parse(localStorage.rooms)
-//     .find((room) => room.title === localStorage.selectedRoom)
-//     .devices.find((device) => device.title === localStorage.selectedDevice);
-// }
 
 const rooms = JSON.parse(localStorage.rooms);
-console.log(rooms);
-
-// class Device {
-//   battery = Math.floor(Math.random() * 100) + 1;
-//   timer;
-//   functions = {};
-//   constructor(isOn, title, imageUrl) {
-//     this.isOn = isOn;
-//     this.title = title;
-//     this.imageUrl = imageUrl;
-//   }
-//   changeBattery() {
-//     if (this.timer > 0) {
-//       clearInterval(this.timer);
-//       this.timer = "undefined";
-//     } else {
-//       this.timer = setInterval(() => {
-//         if (this.battery === 1) {
-//           clearInterval(this.timer);
-//         }
-//         this.battery -= 1;
-//         changeChargePercentage();
-//       }, 3600000);
-//     }
-//   }
-//   setFunctions(functions) {
-//     this.functions = functions;
-//   }
-// }
 
 function setDevices() {
   devices = JSON.parse(localStorage.rooms)
@@ -210,7 +159,6 @@ function changeChargePercentage() {
 }
 
 changeTitle();
-// changeChargePercentage();
 
 function showDevices() {
   let devicesListItems = ``;
@@ -524,7 +472,7 @@ function setDeviceSettingsMarkup() {
         .addEventListener("click", changeDoorStatus);
       break;
     case "microwave-oven":
-      deviceSettingsMarkup = `<div class="microwave"><div class="microwave__power"><button class="microwave__power-btn control-button" data-power="less"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__power-value">${functions.power} W</p><button class="microwave__power-btn control-button" data-power="more"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div><div class="microwave__time"><button class="microwave__time-btn control-button" data-time="less"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__time-value">${functions.time} min</p><button class="microwave__time-btn control-button" data-time="more"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div>`;
+      deviceSettingsMarkup = `<div class="microwave"><div class="microwave__power"><h3 class="settings-subtitle">Power</h3><div class="microwave__buttons-wrapper"><button class="microwave__power-btn control-button" data-power="less"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__power-value">${functions.power} W</p><button class="microwave__power-btn control-button" data-power="more"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="microwave__time"><h3 class="settings-subtitle">Time</h3><div class="microwave__buttons-wrapper"><button class="microwave__time-btn control-button" data-time="less"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__time-value">${functions.time} min</p><button class="microwave__time-btn control-button" data-time="more"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       const powerButtons = document.querySelectorAll(".microwave__power-btn");
       const powerValueEl = document.querySelector(".microwave__power-value");

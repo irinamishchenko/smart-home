@@ -531,16 +531,6 @@
   height: 100%;
 }
 
-/* .mode-item__img-wrapper {
-    width: 100%;
-    height: 150px;
-  }
-  
-  .mode-item__img {
-    width: 100%;
-    height: 100%;
-  } */
-
 .cooker__list-item-title {
   font-size: 18px;
   font-style: normal;
@@ -716,6 +706,12 @@
 .microwave__power,
 .microwave__time {
   width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.microwave__buttons-wrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }

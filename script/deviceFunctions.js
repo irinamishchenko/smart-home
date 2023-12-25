@@ -74,7 +74,9 @@ function changeLampBrightness(event) {
     lessButton.disabled = false;
   }
   if (
-    event.currentTarget.classList.value === "lamp__settings__brightness-less"
+    event.currentTarget.classList.value.includes(
+      "lamp__settings__brightness-less"
+    )
   ) {
     brightnessValue -= 1;
   } else {
@@ -187,44 +189,64 @@ function changeWashingMode(event) {
 }
 
 function checkPasswordPresence() {
-  let functions = devices.find(
-    (device) => device.title === localStorage.selectedDevice
-  ).functions;
-  let { password } = functions;
-  if (!password) {
-    password = prompt("Set password for your door");
-  }
-  rooms
+  let functions = rooms
     .find((room) => room.title === localStorage.selectedRoom)
     .devices.find(
       (device) => device.title === localStorage.selectedDevice
-    ).functions.password = password;
-  localStorage.setItem("rooms", JSON.stringify(rooms));
+    ).functions;
+  let { password } = functions;
+  let newPassword;
+  if (!password) {
+    newPassword = prompt("Set password for your door");
+    rooms
+      .find((room) => room.title === localStorage.selectedRoom)
+      .devices.find(
+        (device) => device.title === localStorage.selectedDevice
+      ).functions.password = newPassword;
+    localStorage.setItem("rooms", JSON.stringify(rooms));
+  }
 }
 
 function changeDoorStatus(event) {
   const input = document.querySelector(".door__password-input");
-  let functions = devices.find(
-    (device) => device.title === localStorage.selectedDevice
-  ).functions;
-  console.log(functions);
+  let functions = rooms
+    .find((room) => room.title === localStorage.selectedRoom)
+    .devices.find(
+      (device) => device.title === localStorage.selectedDevice
+    ).functions;
   let { password, isOpen } = functions;
   if (input.value !== password) {
     alert("Incorrect password!");
     input.value = "";
   } else {
-    rooms
-      .find((room) => room.title === localStorage.selectedRoom)
-      .devices.find(
-        (device) => device.title === localStorage.selectedDevice
-      ).functions.isOpen = !rooms
-      .find((room) => room.title === localStorage.selectedRoom)
-      .devices.find((device) => device.title === localStorage.selectedDevice)
-      .functions.isOpen;
+    if (isOpen) {
+      rooms
+        .find((room) => room.title === localStorage.selectedRoom)
+        .devices.find(
+          (device) => device.title === localStorage.selectedDevice
+        ).functions.isOpen = false;
+      event.target.textContent = "Open the door";
+    } else {
+      //   rooms
+      //     .find((room) => room.title === localStorage.selectedRoom)
+      //     .devices.find(
+      //       (device) => device.title === localStorage.selectedDevice
+      //     ).functions.isOpen = true;
+      rooms
+        .find((room) => room.title === localStorage.selectedRoom)
+        .devices.find(
+          (device) => device.title === localStorage.selectedDevice
+        ).functions.isOpen = !rooms
+        .find((room) => room.title === localStorage.selectedRoom)
+        .devices.find((device) => device.title === localStorage.selectedDevice)
+        .functions.isOpen;
+      event.target.textContent = "Close the door";
+    }
+
     localStorage.setItem("rooms", JSON.stringify(rooms));
-    event.target.textContent === "Open the door"
-      ? (event.target.textContent = "Close the door")
-      : (event.target.textContent = "Open the door");
+    // event.target.textContent === "Open the door"
+    //   ? (event.target.textContent = "Close the door")
+    //   : (event.target.textContent = "Open the door");
     input.value = "";
   }
 }
