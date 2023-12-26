@@ -70,26 +70,26 @@ function changeTitle() {
 function setImage(value) {
   switch (value.toLowerCase()) {
     case "kitchen":
-      return "../images/rooms/kitchen.jpg";
+      return "./images/rooms/kitchen.jpg";
       break;
     case "bathroom":
-      return "../images/rooms/bathroom.jpg";
+      return "./images/rooms/bathroom.jpg";
       break;
     case "living room":
-      return "../images/rooms/living-room.jpg";
+      return "./images/rooms/living-room.jpg";
       break;
     case "bedroom":
-      return "../images/rooms/bedroom.jpg";
+      return "./images/rooms/bedroom.jpg";
       break;
     case "children's room":
-      return "../images/rooms/childrens-room.jpg";
+      return "./images/rooms/childrens-room.jpg";
       break;
     case "office":
-      return "../images/rooms/office.jpg";
+      return "./images/rooms/office.jpg";
       break;
     default:
       const randomNumber = Math.floor(Math.random() * (6 - 1) + 1);
-      return `../images/rooms/other-room${randomNumber}.jpg`;
+      return `./images/rooms/other-room${randomNumber}.jpg`;
       break;
   }
 }
@@ -107,9 +107,9 @@ function showRooms() {
     }" alt="${rooms[i].title}" /><a href="./devices.html" data-room="${
       rooms[i].title
     }" class="rooms__list-item__button"><div class="rooms__list-item__button--icon-wrapper"><svg class="rooms__list-item__button--icon">
-    <use xlink:href="../images/sprite.svg#plus"></use>
+    <use xlink:href="./images/sprite.svg#plus"></use>
   </svg></div>Add device</a><button class="rooms__list-item__delete-button"><svg class="rooms__list-item__delete-button-icon">
-  <use xlink:href="../images/sprite.svg#plus"></use>
+  <use xlink:href="./images/sprite.svg#plus"></use>
 </svg></button></li>`;
     roomsListItems += item;
   }

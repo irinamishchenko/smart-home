@@ -260,7 +260,7 @@ function setDeviceSettingsMarkup() {
   let { title, functions } = device;
   switch (localStorage.selectedDevice) {
     case "light":
-      deviceSettingsMarkup = `<div class="lamp"><div class="lamp__img-container"><img class="lamp-img" src="../images/settings/lamp.png" /><svg class="lamp-icon"><use xlink:href="../images/sprite.svg#lamp-light"></use></svg></div><div class="lamp__settings"><section class="lamp__settings__colors"><h3 class="lamp__settings__colors-title settings-subtitle">Colors</h3><div class="lamp__settings__colors__buttons"><button class="lamp__settings__colors__button button-blue" data-color="#254bec"></button><button class="lamp__settings__colors__button button-white" data-color="#fff"></button><button class="lamp__settings__colors__button button-yellow" data-color="#ffc600"></button></div></section><section class="lamp__settings__brightness"><h3 class=" settings-subtitle">Brightness</h3><div class="lamp__settings__brightness-controls"><button class="lamp__settings__brightness-less control-button"><svg class="controls-icon control-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><p class="lamp__settings__brightness-info">50%</p><button class="lamp__settings__brightness-more control-button"><svg class="controls-icon control-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></section></div></div>`;
+      deviceSettingsMarkup = `<div class="lamp"><div class="lamp__img-container"><img class="lamp-img" src="./images/settings/lamp.png" /><svg class="lamp-icon"><use xlink:href="./images/sprite.svg#lamp-light"></use></svg></div><div class="lamp__settings"><section class="lamp__settings__colors"><h3 class="lamp__settings__colors-title settings-subtitle">Colors</h3><div class="lamp__settings__colors__buttons"><button class="lamp__settings__colors__button button-blue" data-color="#254bec"></button><button class="lamp__settings__colors__button button-white" data-color="#fff"></button><button class="lamp__settings__colors__button button-yellow" data-color="#ffc600"></button></div></section><section class="lamp__settings__brightness"><h3 class=" settings-subtitle">Brightness</h3><div class="lamp__settings__brightness-controls"><button class="lamp__settings__brightness-less control-button"><svg class="controls-icon control-button-icon"><use xlink:href="./images/sprite.svg#minus"></use></svg></button><p class="lamp__settings__brightness-info">50%</p><button class="lamp__settings__brightness-more control-button"><svg class="controls-icon control-button-icon"><use xlink:href="./images/sprite.svg#plus"></use></svg></button></div></section></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       document
         .querySelectorAll(".lamp__settings__colors__button")
@@ -275,7 +275,7 @@ function setDeviceSettingsMarkup() {
         );
       break;
     case "air-condition":
-      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less control-button" data-temp="less"><svg class="condition__controls-button-icon control-button-icon"><use xlink:href="../images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more control-button" data-temp="more"><svg class="condition__controls-button-icon control-button-icon"><use xlink:href="../images/sprite.svg#plus"></use></svg></button></div></div><ul class="condition-modes"><li class="condition-mode" data-mode="cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="../images/sprite.svg#cool"></use></svg><h4 class="condition-mode-title">Cool</h4></li><li class="condition-mode" data-mode="hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="../images/sprite.svg#hot"></use></svg><h4 class="condition-mode-title">Hot</h4></li><li class="condition-mode" data-mode="auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="../images/sprite.svg#auto"></use></svg><h4 class="condition-mode-title">Auto</h4></li></ul></div>`;
+      deviceSettingsMarkup = `<div class="condition"><div class="condition__value-container"><div class="condition__value"><h3 class="condition__value-temp">24°C</h3></div><div class="condition__controls"><button class="condition__controls-button-less control-button" data-temp="less"><svg class="condition__controls-button-icon control-button-icon"><use xlink:href="./images/sprite.svg#minus"></use></svg></button><button class="condition__controls-button-more control-button" data-temp="more"><svg class="condition__controls-button-icon control-button-icon"><use xlink:href="./images/sprite.svg#plus"></use></svg></button></div></div><ul class="condition-modes"><li class="condition-mode" data-mode="cool"><svg class="condition-mode-icon cool-icon"><use xlink:href="./images/sprite.svg#cool"></use></svg><h4 class="condition-mode-title">Cool</h4></li><li class="condition-mode" data-mode="hot"><svg class="condition-mode-icon hot-icon"><use xlink:href="./images/sprite.svg#hot"></use></svg><h4 class="condition-mode-title">Hot</h4></li><li class="condition-mode" data-mode="auto"><svg class="condition-mode-icon auto-icon"><use xlink:href="./images/sprite.svg#auto"></use></svg><h4 class="condition-mode-title">Auto</h4></li></ul></div>`;
       container.innerHTML = deviceSettingsMarkup;
       const tempConditionerButtons = document.querySelectorAll(
         ".condition__controls button"
@@ -306,7 +306,7 @@ function setDeviceSettingsMarkup() {
       );
       break;
     case "coffee-machine":
-      deviceSettingsMarkup = `<div class="coffee"><img class="coffee-img" src="./../images/settings/coffee-machine.png"/><ul class="coffee-drinks"><li class="coffee-drink" data-coffee="cappuccino"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/cappuccino.png" alt="cappuccino" /></div><h3 class="coffee-drink-title">Cappuccino</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="cocoa"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/cocoa.png" alt="cocoa" /></div><h3 class="coffee-drink-title">Cocoa</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="latte"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/latte.png" alt="latte" /></div><h3 class="coffee-drink-title">Latte</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="espresso"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/espresso.png" alt="espresso" /></div><h3 class="coffee-drink-title">Espresso</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="coffee"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/coffee.png" alt="coffee" /></div><h3 class="coffee-drink-title">Black Coffee</h3><button class="coffee-drink-button">Start</button></li></ul></div>`;
+      deviceSettingsMarkup = `<div class="coffee"><img class="coffee-img" src="./images/settings/coffee-machine.png"/><ul class="coffee-drinks"><li class="coffee-drink" data-coffee="cappuccino"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/cappuccino.png" alt="cappuccino" /></div><h3 class="coffee-drink-title">Cappuccino</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="cocoa"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/cocoa.png" alt="cocoa" /></div><h3 class="coffee-drink-title">Cocoa</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="latte"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/latte.png" alt="latte" /></div><h3 class="coffee-drink-title">Latte</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="espresso"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/espresso.png" alt="espresso" /></div><h3 class="coffee-drink-title">Espresso</h3><button class="coffee-drink-button">Start</button></li><li class="coffee-drink" data-coffee="coffee"><div class="coffee-drink-img-wrapper"><img class="coffee-drink-img" src="./../images/settings/coffee.png" alt="coffee" /></div><h3 class="coffee-drink-title">Black Coffee</h3><button class="coffee-drink-button">Start</button></li></ul></div>`;
       container.innerHTML = deviceSettingsMarkup;
       document
         .querySelectorAll(".coffee-drink-button")
@@ -317,7 +317,7 @@ function setDeviceSettingsMarkup() {
       for (let i = 0; i < functions.programms.length; i++) {
         programmsItems += `<li class="tv__programms__list-item modes-list" data-channel="${functions.programms[i]}">${functions.programms[i]}</li>`;
       }
-      deviceSettingsMarkup = `<div class="tv"><div class="tv__programms"><h3 class="tv__programms-title settings-subtitle">Programms</h3><ul class="tv__programms__list">${programmsItems}</ul></div><div class="tv__settings"><div class="tv__settings__volume"><h3 class="tv__settings__volume-title settings-subtitle">Volume</h3><div class="tv__settings__volume-bar"><button class="tv__settings__volume-bar-button control-button" data-volume="less"><svg class="tv__settings__volume-bar-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="tv__settings__volume-bar-value">${functions.volume} %</p><button class="tv__settings__volume-bar-button control-button" data-volume="more"><svg class="tv__settings__volume-bar-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="tv__settings__controls"><h3 class="tv__settings__controls-title settings-subtitle">Controls</h3><div class="tv__settings__controls-container"><button class="tv__settings__controls-button control-button control-prev" data-programm="prev"><svg class="tv__settings__controls-icon control-button-icon"><use xlink:href="./../images/sprite.svg#arrow"></use></svg></button><button class="tv__settings__controls-button control-button control-next" data-programm="next"><svg class="tv__settings__controls-icon control-button-icon"><use xlink:href="./../images/sprite.svg#arrow"></use></svg></button></div></div></div></div>`;
+      deviceSettingsMarkup = `<div class="tv"><div class="tv__programms"><h3 class="tv__programms-title settings-subtitle">Programms</h3><ul class="tv__programms__list">${programmsItems}</ul></div><div class="tv__settings"><div class="tv__settings__volume"><h3 class="tv__settings__volume-title settings-subtitle">Volume</h3><div class="tv__settings__volume-bar"><button class="tv__settings__volume-bar-button control-button" data-volume="less"><svg class="tv__settings__volume-bar-icon control-button-icon"><use xlink:href="./images/sprite.svg#minus"></use></svg></button><p class="tv__settings__volume-bar-value">${functions.volume} %</p><button class="tv__settings__volume-bar-button control-button" data-volume="more"><svg class="tv__settings__volume-bar-icon control-button-icon"><use xlink:href="./images/sprite.svg#plus"></use></svg></button></div></div><div class="tv__settings__controls"><h3 class="tv__settings__controls-title settings-subtitle">Controls</h3><div class="tv__settings__controls-container"><button class="tv__settings__controls-button control-button control-prev" data-programm="prev"><svg class="tv__settings__controls-icon control-button-icon"><use xlink:href="./images/sprite.svg#arrow"></use></svg></button><button class="tv__settings__controls-button control-button control-next" data-programm="next"><svg class="tv__settings__controls-icon control-button-icon"><use xlink:href="./images/sprite.svg#arrow"></use></svg></button></div></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       document
         .querySelectorAll(".tv__programms__list-item")
@@ -355,7 +355,7 @@ function setDeviceSettingsMarkup() {
       for (let i = 0; i < functions.modes.length; i++) {
         modesItems += `<li class="mode-item" data-mode="${functions.modes[
           i
-        ].toLowerCase()}"><div class="mode-item__img-wrapper"><img class="mode-item__img" src="./../images/settings/${functions.modes[
+        ].toLowerCase()}"><div class="mode-item__img-wrapper"><img class="mode-item__img" src="./images/settings/${functions.modes[
           i
         ].toLowerCase()}.png"/></div><h3 class="mode-item-title">${
           functions.modes[i]
@@ -374,9 +374,9 @@ function setDeviceSettingsMarkup() {
           i
         ].toLowerCase()}">${functions.modes[i]}</li>`;
       }
-      deviceSettingsMarkup = `<div class="oven"><div class="oven-modes"><h3 class="oven__modes-title settings-subtitle">Modes</h3><ul class="oven__mode-list">${ovenModesItems}</ul></div><div class="oven__settings"><div class="oven__settings__temp"><h3 class="oven__settings__temp-title settings-subtitle">Temperature</h3><div class="oven__settings__temp_controls"><button class="oven__settings__temp-btn control-button" data-control="less"><svg class="oven__settings__temp-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="oven__settings__temp-value">${
+      deviceSettingsMarkup = `<div class="oven"><div class="oven-modes"><h3 class="oven__modes-title settings-subtitle">Modes</h3><ul class="oven__mode-list">${ovenModesItems}</ul></div><div class="oven__settings"><div class="oven__settings__temp"><h3 class="oven__settings__temp-title settings-subtitle">Temperature</h3><div class="oven__settings__temp_controls"><button class="oven__settings__temp-btn control-button" data-control="less"><svg class="oven__settings__temp-btn-icon control-button-icon"><use xlink:href="./images/sprite.svg#minus"></use></svg></button><p class="oven__settings__temp-value">${
         functions.temp
-      } °C</p><button class="oven__settings__temp-btn control-button" data-control="more"><svg class="oven__settings__temp-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="oven__setings__light"><h3 class="oven__settings__light-title settings-subtitle">Light</h3><button class="oven__settings__light-button">${
+      } °C</p><button class="oven__settings__temp-btn control-button" data-control="more"><svg class="oven__settings__temp-btn-icon control-button-icon"><use xlink:href="./images/sprite.svg#plus"></use></svg></button></div></div><div class="oven__setings__light"><h3 class="oven__settings__light-title settings-subtitle">Light</h3><button class="oven__settings__light-button">${
         functions.light ? "Turn off" : "Turn on"
       }</button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
@@ -412,7 +412,7 @@ function setDeviceSettingsMarkup() {
         .addEventListener("click", toggleOvenLight);
       break;
     case "loud":
-      deviceSettingsMarkup = `<div class="loud"><img class="loud-img" src="./../images/settings/loud.png"/><div class="loud__volume"><h3 class="loud__volume-title settings-subtitle">Volume</h3><div class="loud__volume-container"><button class="loud__volume-button" data-volume="less"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-less"></use></svg></button><p class="loud__volume-value">${functions.volume} %</p><button class="loud__volume-button" data-volume="more"><svg class="loud__volume-button-icon"><use xlink:href="./../images/sprite.svg#volume-more"></use></svg></button></div></div></div>`;
+      deviceSettingsMarkup = `<div class="loud"><img class="loud-img" src="./images/settings/loud.png"/><div class="loud__volume"><h3 class="loud__volume-title settings-subtitle">Volume</h3><div class="loud__volume-container"><button class="loud__volume-button" data-volume="less"><svg class="loud__volume-button-icon"><use xlink:href="./images/sprite.svg#volume-less"></use></svg></button><p class="loud__volume-value">${functions.volume} %</p><button class="loud__volume-button" data-volume="more"><svg class="loud__volume-button-icon"><use xlink:href="./images/sprite.svg#volume-more"></use></svg></button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       const buttons = document.querySelectorAll(".loud__volume-button");
       const valueEl = document.querySelector(".loud__volume-value");
@@ -433,7 +433,7 @@ function setDeviceSettingsMarkup() {
     case "rice-cooker":
       let cookerModesItems = ``;
       functions.modes.forEach((mode) => {
-        let imageUrl = `./../images/settings/${mode
+        let imageUrl = `./images/settings/${mode
           .toLowerCase()
           .split(" ")
           .join("-")}.png`;
@@ -462,17 +462,17 @@ function setDeviceSettingsMarkup() {
       let washingModesItems = ``;
       functions.modes.forEach((mode) => {
         let kebabItemTitle = mode.toLowerCase().split(" ").join("-");
-        let item = `<li class="washing__list-item ${kebabItemTitle}" data-mode="${kebabItemTitle}">${mode}<svg class="washing__list-item-icon"><use xlink:href="./../images/sprite.svg#${kebabItemTitle}"></use></svg></li>`;
+        let item = `<li class="washing__list-item ${kebabItemTitle}" data-mode="${kebabItemTitle}">${mode}<svg class="washing__list-item-icon"><use xlink:href="./images/sprite.svg#${kebabItemTitle}"></use></svg></li>`;
         washingModesItems += item;
       });
-      deviceSettingsMarkup = `<div class="washing"><div class="washing__pointer"><img class="washing__pointer-img" src="./../images/settings/pointer.png" /></div><ul class="washing__list">${washingModesItems}</ul></div>`;
+      deviceSettingsMarkup = `<div class="washing"><div class="washing__pointer"><img class="washing__pointer-img" src="./images/settings/pointer.png" /></div><ul class="washing__list">${washingModesItems}</ul></div>`;
       container.innerHTML = deviceSettingsMarkup;
       document
         .querySelectorAll(".washing__list-item")
         .forEach((mode) => mode.addEventListener("click", changeWashingMode));
       break;
     case "smart-door":
-      deviceSettingsMarkup = `<div class="door"><img class="door-img" src="./../images/settings/smart-door.png" /><div class="door__password-container"><input class="door__password-input" type="number" /><button class="door__password-button">${
+      deviceSettingsMarkup = `<div class="door"><img class="door-img" src="./images/settings/smart-door.png" /><div class="door__password-container"><input class="door__password-input" type="number" /><button class="door__password-button">${
         functions.isOpen ? "Close" : "Open"
       } the door</button></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
@@ -481,7 +481,7 @@ function setDeviceSettingsMarkup() {
         .addEventListener("click", changeDoorStatus);
       break;
     case "microwave-oven":
-      deviceSettingsMarkup = `<div class="microwave"><div class="microwave__power"><h3 class="settings-subtitle">Power</h3><div class="microwave__buttons-wrapper"><button class="microwave__power-btn control-button" data-power="less"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__power-value">${functions.power} W</p><button class="microwave__power-btn control-button" data-power="more"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div><div class="microwave__time"><h3 class="settings-subtitle">Time</h3><div class="microwave__buttons-wrapper"><button class="microwave__time-btn control-button" data-time="less"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#minus"></use></svg></button><p class="microwave__time-value">${functions.time} min</p><button class="microwave__time-btn control-button" data-time="more"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./../images/sprite.svg#plus"></use></svg></button></div></div></div>`;
+      deviceSettingsMarkup = `<div class="microwave"><div class="microwave__power"><h3 class="settings-subtitle">Power</h3><div class="microwave__buttons-wrapper"><button class="microwave__power-btn control-button" data-power="less"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./images/sprite.svg#minus"></use></svg></button><p class="microwave__power-value">${functions.power} W</p><button class="microwave__power-btn control-button" data-power="more"><svg class="microwave__power-btn-icon control-button-icon"><use xlink:href="./images/sprite.svg#plus"></use></svg></button></div></div><div class="microwave__time"><h3 class="settings-subtitle">Time</h3><div class="microwave__buttons-wrapper"><button class="microwave__time-btn control-button" data-time="less"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./images/sprite.svg#minus"></use></svg></button><p class="microwave__time-value">${functions.time} min</p><button class="microwave__time-btn control-button" data-time="more"><svg class="microwave__time-btn-icon control-button-icon"><use xlink:href="./images/sprite.svg#plus"></use></svg></button></div></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       const powerButtons = document.querySelectorAll(".microwave__power-btn");
       const powerValueEl = document.querySelector(".microwave__power-value");
@@ -520,7 +520,7 @@ function setDeviceSettingsMarkup() {
         (item) =>
           (powerItems += `<li class="default-device__power">${item}</li>`)
       );
-      deviceSettingsMarkup = `<div class="default-device"><img class="default-device__img" src="./../images/settings/${title}.png" alt="${title}" /><div class="default-device__wrapper"><h3 class="default-device-subtitle settings-subtitle">Power</h3><ul class="default-device__powers">${powerItems}</ul></div></div>`;
+      deviceSettingsMarkup = `<div class="default-device"><img class="default-device__img" src="./images/settings/${title}.png" alt="${title}" /><div class="default-device__wrapper"><h3 class="default-device-subtitle settings-subtitle">Power</h3><ul class="default-device__powers">${powerItems}</ul></div></div>`;
       container.innerHTML = deviceSettingsMarkup;
       const defaultModes = document.querySelectorAll(".default-device__power");
       break;

@@ -121,7 +121,7 @@ function changeTitle() {
 }
 
 function setImageUrl(title) {
-  return `../images/devices/${title}.png`;
+  return `./images/devices/${title}.png`;
 }
 
 function setTitle(title) {
