@@ -26,6 +26,9 @@
   color: var(--text-color-dark);
 }
 
+.active-devices__list-item-room {
+  font-size: 12px;
+}
 .active-devices__list-item__switcher--active {
   width: 42px;
   height: 23.231px;

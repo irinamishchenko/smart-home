@@ -22,10 +22,11 @@ function showActiveDevices() {
   document
     .querySelectorAll(".active-devices__list-item__switcher--active")
     .forEach((button) => button.addEventListener("click", switchDevice));
-  changeTitle(activeDevicesList);
+  changeTitle();
 }
 
-function changeTitle(activeDevicesList) {
+function changeTitle() {
+  const activeDevicesList = document.querySelector(".active-devices__list");
   const title = document.querySelector(".active-devices__title");
   if (activeDevicesList.children.length === 0) {
     title.textContent = "All your devices are off";
@@ -34,6 +35,7 @@ function changeTitle(activeDevicesList) {
   }
 }
 
+changeTitle();
 showActiveDevices();
 
 function switchDevice(event) {

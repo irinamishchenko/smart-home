@@ -34,6 +34,7 @@ function changeValue(
 }
 
 function changeMode(modes, selectedMode, selectedClass) {
+  turnOnDevicePower();
   for (let i = 0; i < modes.length; i++) {
     if (modes[i].dataset.mode === selectedMode) {
       modes[i].classList.add(selectedClass);

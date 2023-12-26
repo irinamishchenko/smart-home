@@ -120,6 +120,7 @@ function showRooms() {
   document
     .querySelectorAll(".rooms__list-item__delete-button")
     .forEach((button) => button.addEventListener("click", deleteRoom));
+  changeTitle();
 }
 
 function setRoomName() {
